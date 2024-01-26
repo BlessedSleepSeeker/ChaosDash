@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://clfvgf4p2ahqb"]
+
+[ext_resource type="Script" path="res://Scenes/Character/Player.gd" id="1_o10m3"]
+[ext_resource type="Texture2D" uid="uid://csgn715mmxwo6" path="res://Assets/Player/idle.png" id="2_ei4jx"]
+[ext_resource type="Script" path="res://Scenes/Character/StateMachine.gd" id="3_fwbti"]
+[ext_resource type="Script" path="res://Scenes/Character/States/IdleState.gd" id="4_3g218"]
+[ext_resource type="Script" path="res://Scenes/Character/States/JumpSquatState.gd" id="5_6a8d8"]
+[ext_resource type="Script" path="res://Scenes/Character/States/RunState.gd" id="5_f0knl"]
+[ext_resource type="Script" path="res://Scenes/Character/States/InAirState.gd" id="6_geb3k"]
+[ext_resource type="Script" path="res://Scenes/Character/States/AttackState.gd" id="8_m2bxs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uoryc"]
+size = Vector2(16, 22)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -8)
+script = ExtResource("1_o10m3")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_uoryc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_ei4jx")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_fwbti")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_3g218")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("5_f0knl")
+
+[node name="JumpSquat" type="Node" parent="StateMachine"]
+script = ExtResource("5_6a8d8")
+
+[node name="InAir" type="Node" parent="StateMachine"]
+script = ExtResource("6_geb3k")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("8_m2bxs")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(150, -180)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.83
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_drag_margin = true

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://crow5huq87jix"]
+
+[ext_resource type="PackedScene" uid="uid://clfvgf4p2ahqb" path="res://Scenes/Character/Player.tscn" id="1_ij7vc"]
+[ext_resource type="PackedScene" uid="uid://dsbvox3xhuexe" path="res://Scenes/World/Levels/level1.tscn" id="2_2e85t"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player1" parent="." instance=ExtResource("1_ij7vc")]
+position = Vector2(30, -60)
+
+[node name="TileMap" parent="." instance=ExtResource("2_2e85t")]
+
+[node name="Player2" parent="." instance=ExtResource("1_ij7vc")]
+position = Vector2(106, -273)
+PLAYER_NBR = 2
