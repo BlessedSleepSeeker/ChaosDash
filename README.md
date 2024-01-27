@@ -24,21 +24,21 @@ objectif : arriver en premier au bout
 
 ### Platforming 2D de base & sa physique
 
-- Personnage joueur
-- Idle
-- Course
-- Saut
+- ~~Personnage joueur~~
+- ~~Idle~~
+- ~~Course~~
+- ~~Saut~~
 - Attaque : projectile physique qui annule le momentum (sous cooldown) mais qui peut se faire sauter dessus
-- friction au sol
-- aerial drift
-- fast fall
+- ~~friction au sol~~
+- ~~aerial drift~~
+- ~~fast fall~~
 
 ### Stage
 
-- sol
-- plateforme
+- ~~sol~~
+- ~~plateforme~~
 - plateforme traversable?
-- bloc?
+- ~~bloc?~~
 - ennemi de base
 - projectile
 - trou

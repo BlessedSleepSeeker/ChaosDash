@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c1e08ke8dkqgy"]
+
+[ext_resource type="FontFile" uid="uid://cmrl2ud2gbcsr" path="res://Assets/Font/sci-bi.ttf" id="1_tttqy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ndwxm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wgtic"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_g5bj8"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+color = Color(1, 1, 1, 1)
+grow_begin = -5.0
+grow_end = -5.0
+thickness = 5
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cvge"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xb3xy"]
+color = Color(0.635294, 0.635294, 0.635294, 1)
+grow_begin = -5.0
+grow_end = -5.0
+thickness = 5
+
+[resource]
+Button/font_sizes/font_size = 40
+Button/fonts/font = ExtResource("1_tttqy")
+Button/styles/disabled = SubResource("StyleBoxEmpty_ndwxm")
+Button/styles/focus = SubResource("StyleBoxEmpty_wgtic")
+Button/styles/hover = SubResource("StyleBoxLine_g5bj8")
+Button/styles/normal = SubResource("StyleBoxEmpty_3cvge")
+Button/styles/pressed = SubResource("StyleBoxLine_xb3xy")

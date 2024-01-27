@@ -1,9 +1,38 @@
-[gd_scene format=3 uid="uid://chgfq0kn0onbo"]
+[gd_scene load_steps=4 format=3 uid="uid://chgfq0kn0onbo"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_g8gri"]
+[ext_resource type="Texture2D" uid="uid://dgrh76vm86fey" path="res://Assets/TitleScreen/title.png" id="1_o5het"]
+[ext_resource type="Script" path="res://Scenes/Menu/MainMenu.gd" id="2_20ujx"]
+
+[node name="MainMenu" type="CenterContainer"]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_g8gri")
+script = ExtResource("2_20ujx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_o5het")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Play"
+
+[node name="Credits" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Exit" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBox/Play" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBox/Credits" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBox/Exit" to="." method="_on_quit_button_pressed"]

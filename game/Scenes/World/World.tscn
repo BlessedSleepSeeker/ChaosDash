@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://crow5huq87jix"]
+[gd_scene load_steps=5 format=3 uid="uid://crow5huq87jix"]
 
+[ext_resource type="Script" path="res://Scenes/World/WorldHandler.gd" id="1_gtwtk"]
 [ext_resource type="Script" path="res://Scenes/World/SplitScreenHandler.gd" id="1_h66fm"]
 [ext_resource type="PackedScene" uid="uid://clfvgf4p2ahqb" path="res://Scenes/Character/Player.tscn" id="1_ij7vc"]
 [ext_resource type="PackedScene" uid="uid://bjabk0w0v8xsf" path="res://Scenes/World/LevelHandler.tscn" id="3_w3l1v"]
 
 [node name="WorldRoot" type="Node"]
+script = ExtResource("1_gtwtk")
 
 [node name="SplitScreenHandler" type="GridContainer" parent="."]
 anchors_preset = 15
@@ -16,7 +18,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_h66fm")
-player_nbr = 5
 
 [node name="MainSubview" type="SubViewportContainer" parent="SplitScreenHandler"]
 layout_mode = 2
