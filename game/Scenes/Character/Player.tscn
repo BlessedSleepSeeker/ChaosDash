@@ -10,14 +10,14 @@
 [ext_resource type="Script" path="res://Scenes/Character/States/AttackState.gd" id="8_m2bxs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoryc"]
-size = Vector2(16, 22)
+size = Vector2(12, 15)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -8)
 script = ExtResource("1_o10m3")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_uoryc")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -44,11 +44,11 @@ script = ExtResource("6_geb3k")
 script = ExtResource("8_m2bxs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(150, -180)
+offset = Vector2(0, -50)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_horizontal_offset = 0.83
 drag_left_margin = 0.1
+drag_top_margin = 0.44
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
-editor_draw_drag_margin = true

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjabk0w0v8xsf"]
+
+[ext_resource type="PackedScene" uid="uid://dsbvox3xhuexe" path="res://Scenes/World/Levels/level1.tscn" id="1_ha35o"]
+
+[sub_resource type="Environment" id="Environment_ny6h0"]
+background_mode = 1
+background_color = Color(0.0627451, 0.0627451, 0.0705882, 1)
+
+[node name="World" type="Node2D"]
+position = Vector2(0, 450)
+
+[node name="TileMap" parent="." instance=ExtResource("1_ha35o")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ny6h0")

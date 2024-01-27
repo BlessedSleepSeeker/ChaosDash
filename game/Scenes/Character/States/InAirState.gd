@@ -23,7 +23,7 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	#print(boost_jump)
 	#print(player.is_jumping)
-	print(frame_count)
+	#print(frame_count)
 	if boost_jump and player.is_jumping and frame_count < player.MAX_JUMP_HOLD_FRAMES and frame_count % 2 == 1:
 		player.velocity.y += player.JUMP_IMPULSE / frame_count
 	player.velocity.x += player.v_direction * player.AIR_DRIFT

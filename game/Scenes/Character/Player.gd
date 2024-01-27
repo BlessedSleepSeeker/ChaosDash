@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var JUMP_IMPULSE: float = -200
 @export var MAX_JUMP_HOLD_FRAMES: int = 2
 @export var MAX_FALL_SPEED: int = 200
-@export var MAX_FASTFALL_SPEED: int = 275
+@export var MAX_FASTFALL_SPEED: int = 350
 @export var MAX_GROUND_SPEED: int = 125
 @export var MAX_AIR_SPEED: int = 100
 @export var ACCEL: int = 10
@@ -29,6 +29,13 @@ var v_direction := float()
 
 func timer(duration, _caller):
 	get_tree().create_timer(duration)
+
+func reassignControls():
+	act_left = "p%d_left" % PLAYER_NBR
+	act_right = "p%d_right" % PLAYER_NBR
+	act_up = "p%d_up" % PLAYER_NBR
+	act_down = "p%d_down" % PLAYER_NBR
+	act_attack = "p%d_attack" % PLAYER_NBR
 
 func _ready():
 	pass

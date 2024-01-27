@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://5gawol3souh6"]
+
+[ext_resource type="Script" path="res://Scenes/Character/SplitCamera.gd" id="1_mnqr2"]
+
+[node name="Camera2D" type="Camera2D"]
+offset = Vector2(150, -180)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 0.83
+drag_left_margin = 0.1
+drag_top_margin = 0.44
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_drag_margin = true
+script = ExtResource("1_mnqr2")
