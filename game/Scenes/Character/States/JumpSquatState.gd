@@ -5,19 +5,20 @@ func enter(_msg := {}) -> void:
 		state_machine.transition_to("Cutscene")
 
 func handle_input(_event: InputEvent) -> void:
-	if Input.is_action_just_released(player.act_up):
-		jump()
+	pass
 
 func update(_delta: float) -> void:
 	pass
 
 func jump():
+	player.is_jumping = true
+	player.velocity.y += player.JUMP_IMPULSE
 	state_machine.transition_to("InAir")
 
 func physics_update(_delta: float) -> void:
 	player.velocity.x = clampf(player.velocity.x, -player.MAX_GROUND_SPEED, player.MAX_GROUND_SPEED)
-	player.move_and_slide()
 	jump()
+	player.move_and_slide()
 	
 
 func exit() -> void:

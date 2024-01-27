@@ -9,7 +9,3 @@
 position = Vector2(30, -60)
 
 [node name="TileMap" parent="." instance=ExtResource("2_2e85t")]
-
-[node name="Player2" parent="." instance=ExtResource("1_ij7vc")]
-position = Vector2(106, -273)
-PLAYER_NBR = 2
