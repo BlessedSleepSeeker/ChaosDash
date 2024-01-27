@@ -1,5 +1,7 @@
 extends PlayerState
 
+var frame_count: int = 0
+
 func enter(_msg := {}) -> void:
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
@@ -14,11 +16,14 @@ func update(_delta: float) -> void:
 func jump():
 	player.is_jumping = true
 	player.velocity.y += player.JUMP_IMPULSE
+	frame_count = 0
 	state_machine.transition_to("InAir")
 
 func physics_update(_delta: float) -> void:
-	player.velocity.x = clampf(player.velocity.x, -player.MAX_GROUND_SPEED, player.MAX_GROUND_SPEED)
-	jump()
+	player.velocity.x = clampf(player.velocity.x, -player.MAX_GROUND_SPEED, player.MAX_GROUND_SPEED) + player.CHAOS_HORIZONTAL_MODIFIER
+	frame_count += 1
+	if frame_count >= player.JUMPSQUAT:
+		jump()
 	player.move_and_slide()
 	
 

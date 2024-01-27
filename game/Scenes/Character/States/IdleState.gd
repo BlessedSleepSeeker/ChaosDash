@@ -20,7 +20,8 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	if not player.is_on_floor():
 		state_machine.transition_to("InAir")
-	player.velocity.x *= player.FRICTION
+	player.velocity.x = (player.velocity.x * player.FRICTION)
+	player.velocity.x = clampf(player.velocity.x, -player.MAX_AIR_SPEED, player.MAX_AIR_SPEED) + player.CHAOS_HORIZONTAL_MODIFIER
 	player.move_and_slide()
 
 func exit() -> void:

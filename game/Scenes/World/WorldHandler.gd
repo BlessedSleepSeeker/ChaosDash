@@ -3,8 +3,9 @@ extends Node
 
 @onready var levelHandler: LevelHandler = $SplitScreenHandler/MainSubview/SubViewport/LevelHandler
 @onready var splitscreenHandler: SplitScreenHandler = $SplitScreenHandler
+@onready var chaosHandler: ChaosHandler = $ChaosHandler
 
-@export var difficulty: int = 1
+@export var difficulty: int = 0
 
 var levelTransition: bool = false
 
@@ -15,8 +16,10 @@ func _ready():
 	levelHandler.player_death.connect(_on_player_death)
 	setUpLevel(difficulty)
 
-func setUpLevel(lvlDifficulty: int) -> void:
-	levelHandler.loadLevel(lvlDifficulty)
+func setUpLevel(_lvlDifficulty: int) -> void:
+	if self.difficulty == 0:
+		self.difficulty += 1
+	levelHandler.loadLevel(self.difficulty)
 	splitscreenHandler.setPlayerToStart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

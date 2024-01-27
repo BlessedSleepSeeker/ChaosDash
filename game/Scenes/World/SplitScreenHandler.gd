@@ -28,3 +28,7 @@ func setPlayerToStart() -> void:
 	for player in players:
 		player.position = startPos
 		
+func callPlayersFunc(funcName: String, params: Variant = null):
+	for player in players:
+		var funk = Callable(player, funcName)
+		funk.call(params)

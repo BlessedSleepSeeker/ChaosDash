@@ -18,7 +18,6 @@ func handle_input(_event: InputEvent) -> void:
 		boost_jump = false
 	if Input.is_action_just_pressed(player.act_down) and player.velocity.y > 0:
 		player.is_fastfalling = true
-		player.animSprite.play("fall")
 
 func update(_delta: float) -> void:
 	pass
@@ -29,8 +28,10 @@ func physics_update(_delta: float) -> void:
 	#print(frame_count)
 	if boost_jump and player.is_jumping and frame_count < player.MAX_JUMP_HOLD_FRAMES and frame_count % 2 == 1:
 		player.velocity.y += player.JUMP_IMPULSE / frame_count
-	player.velocity.x += player.v_direction * player.AIR_DRIFT
-	player.velocity.x = clampf(player.velocity.x, -player.MAX_AIR_SPEED, player.MAX_AIR_SPEED)
+	player.velocity.x += player.v_direction * (player.AIR_DRIFT)
+	player.velocity.x = clampf(player.velocity.x, -player.MAX_AIR_SPEED, player.MAX_AIR_SPEED) + player.CHAOS_HORIZONTAL_MODIFIER
+	if player.velocity.y > 0:
+		player.animSprite.play("fall")
 	player.move_and_slide()
 	if player.is_on_floor():
 		if player.v_direction != 0:

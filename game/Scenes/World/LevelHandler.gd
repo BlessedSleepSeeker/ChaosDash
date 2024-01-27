@@ -58,7 +58,6 @@ func loadLevel(lvlDifficulty: int) -> void:
 
 func addMetadataToLevel() -> void:
 	for child in cur_level.get_children():
-		print(child)
 		if child.has_signal("death_entered"):
 			var instance = deathTile.instantiate()
 			cur_level.add_child(instance)

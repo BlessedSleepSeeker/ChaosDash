@@ -15,6 +15,10 @@ extends CharacterBody2D
 @export var ACCEL: int = 10
 @export var FRICTION: float = 0.92
 @export var AIR_DRIFT: int = 10
+@export var JUMPSQUAT: int = 3
+
+# chaos modifier
+@export var CHAOS_HORIZONTAL_MODIFIER: int = 0
 
 @onready var act_left = "p%d_left" % PLAYER_NBR
 @onready var act_right = "p%d_right" % PLAYER_NBR
@@ -23,6 +27,8 @@ extends CharacterBody2D
 @onready var act_attack = "p%d_attack" % PLAYER_NBR
 
 @onready var animSprite: AnimatedSprite2D = $AnimSprite
+
+
 
 var is_jumping: bool = false
 var is_fastfalling: bool = false
@@ -52,7 +58,6 @@ func _process(_delta):
 	elif v_direction > 0:
 		animSprite.flip_h = false
 
-
 func _physics_process(_delta):
 	velocity.y += GRAVITY
 	if is_fastfalling:
@@ -60,3 +65,20 @@ func _physics_process(_delta):
 	else:
 		velocity.y = clampf(velocity.y, JUMP_IMPULSE * MAX_JUMP_HOLD_FRAMES, MAX_FALL_SPEED)
 	#print(velocity.y)
+
+func chaosGravity(newGrav: int):
+	GRAVITY -= newGrav
+
+func chaosFriction(newFric: float):
+	FRICTION -= newFric / 100
+	if FRICTION > 1:
+		FRICTION = 1
+
+func chaosChargedJump(new: int):
+	MAX_JUMP_HOLD_FRAMES += new
+
+func chaosWind(wind: int):
+	CHAOS_HORIZONTAL_MODIFIER += wind
+
+func chaosGroundSpeed(new: int):
+	MAX_GROUND_SPEED += new

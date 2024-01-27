@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2a2hxpnisbot"]
+
+[ext_resource type="Script" path="res://Scenes/World/ChaosModifiers/ChaosHandler.gd" id="1_d8fbc"]
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="2_yye6q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjbun"]
+
+[sub_resource type="Animation" id="Animation_i6gv4"]
+resource_name = "ChaosIncomingBlink"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("M/C/ChaosIncoming:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.901961, 0.180392, 0.419608, 0), Color(0.901961, 0.180392, 0.419608, 0.92), Color(0.901961, 0.180392, 0.419608, 0), Color(0.901961, 0.180392, 0.419608, 0.92), Color(0.901961, 0.180392, 0.419608, 0), Color(0.901961, 0.180392, 0.419608, 1), Color(0.901961, 0.180392, 0.419608, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a6dew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("M/C/ChaosIncoming:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.901961, 0.180392, 0.419608, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("M/C/ChaosDescription:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3bw4r"]
+resource_name = "ChaosDesc"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("M/C/ChaosDescription:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.901961, 0.180392, 0.419608, 1), Color(0.901961, 0.180392, 0.419608, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i0yg7"]
+_data = {
+"ChaosDesc": SubResource("Animation_3bw4r"),
+"ChaosIncomingBlink": SubResource("Animation_i6gv4"),
+"RESET": SubResource("Animation_a6dew")
+}
+
+[node name="ChaosHandler" type="Node"]
+script = ExtResource("1_d8fbc")
+
+[node name="M" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_yye6q")
+
+[node name="C" type="CenterContainer" parent="M"]
+layout_mode = 2
+
+[node name="ChaosIncoming" type="Label" parent="M/C"]
+modulate = Color(0.901961, 0.180392, 0.419608, 1)
+layout_mode = 2
+text = "Chaos Incoming !"
+label_settings = SubResource("LabelSettings_qjbun")
+uppercase = true
+
+[node name="ChaosDescription" type="Label" parent="M/C"]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i0yg7")
+}

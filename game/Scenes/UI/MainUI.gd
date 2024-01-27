@@ -1,7 +1,5 @@
-class_name SplitCam
-extends Camera2D
+extends CanvasLayer
 
-@export var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,6 +7,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	self.position = player.position
-	#print(position)
+func _process(delta):
+	pass

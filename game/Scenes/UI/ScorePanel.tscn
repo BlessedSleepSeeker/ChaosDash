@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://8xt6joiuavix"]
+
+[ext_resource type="Script" path="res://Scenes/UI/ScorePanel.gd" id="1_u10jj"]
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_vfbas"]
+[ext_resource type="Texture2D" uid="uid://femn7ioi7bvr" path="res://Assets/Player/portrait.png" id="2_b8fa6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw3qa"]
+atlas = ExtResource("2_b8fa6")
+region = Rect2(48, 0, 16, 16)
+
+[node name="ScorePanel" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vfbas")
+script = ExtResource("1_u10jj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Textu" type="TextureRect" parent="HBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rw3qa")
+
+[node name="VBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerNbr" type="Label" parent="HBoxContainer/VBox"]
+layout_mode = 2
+text = "Player 1"
+
+[node name="PlayerScore" type="Label" parent="HBoxContainer/VBox"]
+layout_mode = 2
+text = "10 Points"
