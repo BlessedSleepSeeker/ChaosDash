@@ -12,7 +12,7 @@ config_version=5
 
 config/name="ChaosRunner"
 config/description="Global Game Jam 2024 Submission"
-run/main_scene="res://Scenes/Menu/MainMenu.tscn"
+run/main_scene="res://Scenes/World/World.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -117,6 +117,13 @@ p4_attack={
 "deadzone": 0.5,
 "events": []
 }
+
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="projectile"
+2d_physics/layer_4="area triggers"
 
 [rendering]
 

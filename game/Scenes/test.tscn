@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://clb8o5arlowp3"]
+
+[ext_resource type="Script" path="res://Scenes/test.gd" id="1_5c8qf"]
+[ext_resource type="PackedScene" uid="uid://clfvgf4p2ahqb" path="res://Scenes/Character/Player.tscn" id="1_v8a6e"]
+[ext_resource type="PackedScene" uid="uid://ccfpg0wab2rxk" path="res://Scenes/World/TileSetScenes/Goal.tscn" id="2_0knki"]
+[ext_resource type="TileSet" uid="uid://jt4cxulirnw" path="res://Assets/Tiles/BaseTileSet.tres" id="2_3ojpb"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5c8qf")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(0, -8)
+tile_set = ExtResource("2_3ojpb")
+format = 2
+layer_0/tile_data = PackedInt32Array(196608, 0, 196608)
+
+[node name="Goal" parent="TileMap" instance=ExtResource("2_0knki")]
+position = Vector2(0, 31)
+
+[node name="Player" parent="." instance=ExtResource("1_v8a6e")]

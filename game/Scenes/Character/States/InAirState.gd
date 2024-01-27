@@ -9,6 +9,8 @@ func enter(_msg := {}) -> void:
 	frame_count = 0
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
+	if player.is_jumping:
+		player.animSprite.play("jump")
 
 func handle_input(_event: InputEvent) -> void:
 	player.v_direction = Input.get_axis(player.act_left, player.act_right)
@@ -16,6 +18,7 @@ func handle_input(_event: InputEvent) -> void:
 		boost_jump = false
 	if Input.is_action_just_pressed(player.act_down) and player.velocity.y > 0:
 		player.is_fastfalling = true
+		player.animSprite.play("fall")
 
 func update(_delta: float) -> void:
 	pass

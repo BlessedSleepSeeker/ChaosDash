@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccuirxkn3t8qw"]
+
+[ext_resource type="Texture2D" uid="uid://bdoo0rhqe2jig" path="res://Assets/Parallax/sky.png" id="1_qu0jd"]
+[ext_resource type="Texture2D" uid="uid://lqxa6hvfjpf1" path="res://Assets/Parallax/moutains.png" id="2_ias1s"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="SkyParallax" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.1, 1)
+motion_offset = Vector2(-10, 0)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SkyParallax"]
+texture = ExtResource("1_qu0jd")
+centered = false
+offset = Vector2(0, 50)
+
+[node name="MoutainParallax" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 1)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="MoutainParallax"]
+texture = ExtResource("2_ias1s")
+centered = false
+offset = Vector2(0, 50)

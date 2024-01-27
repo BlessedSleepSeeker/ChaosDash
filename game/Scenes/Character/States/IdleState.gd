@@ -3,6 +3,7 @@ extends PlayerState
 func enter(_msg := {}) -> void:
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
+	player.animSprite.play("idle")
 
 func handle_input(_event: InputEvent) -> void:
 	player.v_direction = Input.get_axis(player.act_left, player.act_right)

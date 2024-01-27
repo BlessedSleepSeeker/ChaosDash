@@ -3,6 +3,7 @@ extends PlayerState
 func enter(_msg := {}) -> void:
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
+	player.animSprite.play("jumpsquat")
 
 func handle_input(_event: InputEvent) -> void:
 	pass

@@ -22,10 +22,13 @@ extends CharacterBody2D
 @onready var act_down = "p%d_down" % PLAYER_NBR
 @onready var act_attack = "p%d_attack" % PLAYER_NBR
 
+@onready var animSprite: AnimatedSprite2D = $AnimSprite
+
 var is_jumping: bool = false
 var is_fastfalling: bool = false
 var v_direction := float()
 
+const playersColor: Array = [Color8(230, 45, 107), Color8(46, 199, 230), Color8(255, 230, 102), Color.FOREST_GREEN]
 
 func timer(duration, _caller):
 	get_tree().create_timer(duration)
@@ -38,13 +41,16 @@ func reassignControls():
 	act_attack = "p%d_attack" % PLAYER_NBR
 
 func _ready():
-	pass
+	animSprite.modulate = playersColor[PLAYER_NBR - 1]
 
 func _unhandled_input(_event):
 	pass
 
 func _process(_delta):
-	pass
+	if v_direction < 0:
+		animSprite.flip_h = true
+	elif v_direction > 0:
+		animSprite.flip_h = false
 
 
 func _physics_process(_delta):

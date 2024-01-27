@@ -1,15 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjabk0w0v8xsf"]
+[gd_scene load_steps=4 format=3 uid="uid://bjabk0w0v8xsf"]
 
-[ext_resource type="PackedScene" uid="uid://dsbvox3xhuexe" path="res://Scenes/World/Levels/level1.tscn" id="1_ha35o"]
+[ext_resource type="Script" path="res://Scenes/World/LevelHandler.gd" id="1_t1b38"]
+[ext_resource type="PackedScene" uid="uid://ccuirxkn3t8qw" path="res://Scenes/ParallaxBG.tscn" id="2_02p18"]
 
 [sub_resource type="Environment" id="Environment_ny6h0"]
 background_mode = 1
 background_color = Color(0.0627451, 0.0627451, 0.0705882, 1)
 
-[node name="World" type="Node2D"]
+[node name="LevelHandler" type="Node2D"]
 position = Vector2(0, 450)
-
-[node name="TileMap" parent="." instance=ExtResource("1_ha35o")]
+script = ExtResource("1_t1b38")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ny6h0")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_02p18")]
