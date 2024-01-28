@@ -12,6 +12,9 @@ extends GridContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func setup():
 	if player_nbr % 2 == 0:
 		self.columns = player_nbr / 2
 	else:

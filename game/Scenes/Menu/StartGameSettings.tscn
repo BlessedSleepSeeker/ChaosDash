@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://bw4choumxblbr"]
+
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_p35oj"]
+[ext_resource type="Script" path="res://scenes/Menu/StartGameSettings.gd" id="2_bit4h"]
+[ext_resource type="Texture2D" uid="uid://dgrh76vm86fey" path="res://Assets/TitleScreen/title.png" id="2_pyyso"]
+[ext_resource type="Texture2D" uid="uid://ckwro78vd0ov0" path="res://Assets/Player/lapingue.png" id="3_5ot2n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xnrq"]
+atlas = ExtResource("3_5ot2n")
+region = Rect2(80, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rkma"]
+atlas = ExtResource("3_5ot2n")
+region = Rect2(144, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4cun"]
+atlas = ExtResource("3_5ot2n")
+region = Rect2(96, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0scvy"]
+atlas = ExtResource("3_5ot2n")
+region = Rect2(113, 0, 14, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syxc4"]
+atlas = ExtResource("3_5ot2n")
+region = Rect2(144, 0, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6ojo"]
+atlas = ExtResource("3_5ot2n")
+region = Rect2(128, 0, 16, 22)
+
+[node name="StartGameSettings" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p35oj")
+script = ExtResource("2_bit4h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_pyyso")
+
+[node name="VB" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VB"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VB/MarginContainer"]
+layout_mode = 2
+text = "> I am ready <"
+
+[node name="CenterContainer" type="CenterContainer" parent="VB"]
+layout_mode = 2
+
+[node name="UpButton" type="TextureButton" parent="VB/CenterContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_4xnrq")
+texture_pressed = SubResource("AtlasTexture_3rkma")
+texture_hover = SubResource("AtlasTexture_r4cun")
+
+[node name="HB" type="CenterContainer" parent="VB"]
+layout_mode = 2
+
+[node name="PlayerNbr" type="Label" parent="VB/HB"]
+layout_mode = 2
+text = "Player(s)"
+
+[node name="CenterContainer2" type="CenterContainer" parent="VB"]
+layout_mode = 2
+
+[node name="DownButton" type="TextureButton" parent="VB/CenterContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_0scvy")
+texture_pressed = SubResource("AtlasTexture_syxc4")
+texture_hover = SubResource("AtlasTexture_y6ojo")
+
+[connection signal="pressed" from="VB/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VB/CenterContainer/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="VB/CenterContainer2/DownButton" to="." method="_on_down_button_pressed"]

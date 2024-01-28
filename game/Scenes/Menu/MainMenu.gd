@@ -1,7 +1,7 @@
 extends CenterContainer
 
 @export var creditsScenePath := "res://scenes/Menu/CreditsScene.tscn"
-@export var gameScenePath := "res://scenes/game_world/World.tscn"
+@export var gameSettingPath := "res://scenes/Menu/StartGameSettings.tscn"
 
 @onready var playBtn = $VBox/Play
 @onready var creditsBtn = $VBox/Credits
@@ -18,5 +18,5 @@ func _on_credits_button_pressed():
 	get_tree().change_scene_to_packed(creditsScene)
 
 func _on_play_button_pressed():
-	var gameScene = load(gameScenePath)
+	var gameScene = load(gameSettingPath)
 	get_tree().change_scene_to_packed(gameScene)

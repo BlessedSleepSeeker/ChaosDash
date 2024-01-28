@@ -6,11 +6,14 @@ extends Node
 @onready var chaosHandler: ChaosHandler = $ChaosHandler
 
 @export var difficulty: int = 0
+@export var playerCount: int = 0
 
 var levelTransition: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	splitscreenHandler.player_nbr = playerCount
+	splitscreenHandler.setup()
 	levelHandler.level_finished.connect(_on_level_finished)
 	levelHandler.level_started.connect(_on_level_started)
 	levelHandler.player_death.connect(_on_player_death)
