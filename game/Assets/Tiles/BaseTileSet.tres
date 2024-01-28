@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=33 format=3 uid="uid://jt4cxulirnw"]
 
 [ext_resource type="Texture2D" uid="uid://b12ftvque6npt" path="res://Assets/Tiles/tileset.png" id="1_hillv"]
-[ext_resource type="PackedScene" uid="uid://fpggvqe00l0x" path="res://Scenes/World/TileSetScenes/CheckPoint.tscn" id="1_q5jas"]
-[ext_resource type="PackedScene" uid="uid://cvykatj06q3o7" path="res://Scenes/World/TileSetScenes/DeathZone.tscn" id="2_slwud"]
-[ext_resource type="PackedScene" uid="uid://ccfpg0wab2rxk" path="res://Scenes/World/TileSetScenes/Goal.tscn" id="3_b4623"]
-[ext_resource type="PackedScene" uid="uid://bgmgua53b2s3b" path="res://Scenes/World/TileSetScenes/StartPoint.tscn" id="4_diu7f"]
+[ext_resource type="PackedScene" uid="uid://fpggvqe00l0x" path="res://Scenes/world/TileSetScenes/CheckPoint.tscn" id="1_q5jas"]
+[ext_resource type="PackedScene" uid="uid://cvykatj06q3o7" path="res://Scenes/world/TileSetScenes/DeathZone.tscn" id="2_slwud"]
+[ext_resource type="PackedScene" uid="uid://ccfpg0wab2rxk" path="res://Scenes/world/TileSetScenes/Goal.tscn" id="3_b4623"]
+[ext_resource type="PackedScene" uid="uid://bgmgua53b2s3b" path="res://Scenes/world/TileSetScenes/StartPoint.tscn" id="4_diu7f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8n354"]
 

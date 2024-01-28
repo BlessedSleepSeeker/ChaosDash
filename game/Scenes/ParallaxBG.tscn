@@ -7,8 +7,7 @@
 
 [node name="SkyParallax" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.1, 1)
-motion_offset = Vector2(-10, 0)
-motion_mirroring = Vector2(640, 0)
+motion_mirroring = Vector2(640, 480)
 
 [node name="Sprite2D" type="Sprite2D" parent="SkyParallax"]
 texture = ExtResource("1_qu0jd")

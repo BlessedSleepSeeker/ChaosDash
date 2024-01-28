@@ -43,6 +43,7 @@ func swapLevel(lvlDifficulty: int) -> void:
 
 func unloadLevel() -> void:
 	cur_level.queue_free()
+	potentialLevelArray = []
 
 func loadLevel(lvlDifficulty: int) -> void:
 	var levelScenePath = buildLevelPath(lvlDifficulty)

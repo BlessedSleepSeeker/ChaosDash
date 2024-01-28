@@ -17,8 +17,6 @@ func _ready():
 	setUpLevel(difficulty)
 
 func setUpLevel(_lvlDifficulty: int) -> void:
-	if self.difficulty == 0:
-		self.difficulty += 1
 	levelHandler.loadLevel(self.difficulty)
 	splitscreenHandler.setPlayerToStart()
 
@@ -33,6 +31,8 @@ func _on_level_finished(_body: Node2D):
 	if _body is Player:
 		print(_body.PLAYER_NBR)
 	levelTransition = true
+	if self.difficulty == 0:
+		self.difficulty += 1
 	
 
 func _on_level_started():
