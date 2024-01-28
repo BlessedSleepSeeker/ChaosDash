@@ -4,6 +4,7 @@ extends Node2D
 @export var levelsFolderPath: String = "res://scenes/game_world/devlevels/"
 
 var potentialLevelArray: Array = []
+var spawnPointPos: Array = []
 
 var cur_level: TileMap = null
 
@@ -49,6 +50,7 @@ func swapLevel(lvlDifficulty: int) -> void:
 func unloadLevel() -> void:
 	cur_level.queue_free()
 	potentialLevelArray = []
+	spawnPointPos = []
 
 func loadLevel(lvlDifficulty: int) -> void:
 	var levelScenePath = buildLevelPath(lvlDifficulty)
@@ -75,18 +77,20 @@ func addMetadataToLevel() -> void:
 			instance.position = child.position
 			instance.goal_reached.connect(_on_goal_reached)
 
-func getLevelStartingPos() -> Vector2:
+func getSpawnPoints() -> Array:
 	for tile in cur_level.get_used_cells_by_id(1, -1, Vector2i(-1, -1), 0):
-		return to_global(cur_level.map_to_local(tile))
-	return Vector2(0, 0)
+		spawnPointPos.append(to_global(cur_level.map_to_local(tile)))
+	return spawnPointPos
+
+func getRandomSpawnPoint() -> Vector2:
+	spawnPointPos.shuffle()
+	return spawnPointPos[0]
 
 func _on_death_entered(_body: Node2D):
-	if _body.has_method("death"):
-		player_death.emit(_body)
+	if _body.has_method("death") and not (_body.state_machine.state.name == "Death" or _body.state_machine.state.name == "OutOfGame"):
+		_body.last_spawnpoint = getRandomSpawnPoint()
 		_body.death()
-		await get_tree().create_timer(1.0).timeout
-		if _body.has_method("readyLevel"):
-			_body.readyLevel(getLevelStartingPos())
+
 
 func _on_goal_reached(_body: Node2D):
 	level_finished.emit(_body)

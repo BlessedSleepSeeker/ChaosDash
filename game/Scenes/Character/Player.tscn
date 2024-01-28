@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://clfvgf4p2ahqb"]
+[gd_scene load_steps=45 format=3 uid="uid://clfvgf4p2ahqb"]
 
 [ext_resource type="Script" path="res://scenes/Character/Player.gd" id="1_o10m3"]
 [ext_resource type="Script" path="res://scenes/Character/StateMachine.gd" id="3_fwbti"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scenes/Character/States/DeathState.gd" id="10_ogyie"]
 [ext_resource type="Script" path="res://scenes/Character/States/ParadeState.gd" id="11_csikm"]
 [ext_resource type="Script" path="res://scenes/Character/States/WaitState.gd" id="12_4cexp"]
+[ext_resource type="Script" path="res://scenes/Character/States/OutOfGameState.gd" id="13_m3e87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoryc"]
 size = Vector2(12, 15)
@@ -245,6 +246,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"outofgame",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0sgj3")
 }, {
 "duration": 1.0,
@@ -310,6 +319,9 @@ script = ExtResource("11_csikm")
 [node name="Wait" type="Node" parent="StateMachine"]
 script = ExtResource("12_4cexp")
 
+[node name="OutOfGame" type="Node" parent="StateMachine"]
+script = ExtResource("13_m3e87")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 16.0
 drag_horizontal_enabled = true
@@ -323,13 +335,7 @@ drag_bottom_margin = 0.1
 [node name="AnimSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_y0c5e")
-animation = &"death"
-frame = 11
-frame_progress = 0.478206
-
-[node name="Timer" type="Timer" parent="."]
-process_callback = 0
-one_shot = true
+animation = &"outofgame"
 
 [node name="ProjoSpawnPointRight" type="Marker2D" parent="."]
 position = Vector2(10, 1)

@@ -29,7 +29,8 @@ func _process(_delta):
 
 func _on_level_finished(_body: Node2D):
 	if _body is Player:
-		print(_body.PLAYER_NBR)
+		_body.SCORE += 30
+		_body.state_machine.transition_to("parade")
 	levelTransition = true
 	if self.difficulty == 0:
 		self.difficulty += 1

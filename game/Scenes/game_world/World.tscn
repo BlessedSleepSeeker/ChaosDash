@@ -23,8 +23,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 script = ExtResource("1_h66fm")
 
 [node name="MainSubview" type="SubViewportContainer" parent="SplitScreenHandler"]
@@ -42,8 +40,8 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
-[node name="Player1" parent="SplitScreenHandler/MainSubview/SubViewport" instance=ExtResource("1_ij7vc")]
-
 [node name="LevelHandler" parent="SplitScreenHandler/MainSubview/SubViewport" instance=ExtResource("3_w3l1v")]
+
+[node name="Player1" parent="SplitScreenHandler/MainSubview/SubViewport" instance=ExtResource("1_ij7vc")]
 
 [node name="ChaosHandler" parent="." instance=ExtResource("5_qmwld")]
