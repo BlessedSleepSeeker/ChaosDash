@@ -18,6 +18,8 @@ func handle_input(_event: InputEvent) -> void:
 		boost_jump = false
 	if Input.is_action_just_pressed(player.act_down) and player.velocity.y > 0:
 		player.is_fastfalling = true
+	if Input.is_action_just_pressed(player.act_attack):
+		state_machine.transition_to("Attack")
 
 func update(_delta: float) -> void:
 	pass

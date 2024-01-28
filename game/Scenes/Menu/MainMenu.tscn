@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_g8gri"]
 [ext_resource type="Texture2D" uid="uid://dgrh76vm86fey" path="res://Assets/TitleScreen/title.png" id="1_o5het"]
-[ext_resource type="Script" path="res://Scenes/Menu/MainMenu.gd" id="2_20ujx"]
+[ext_resource type="Script" path="res://scenes/Menu/MainMenu.gd" id="2_20ujx"]
 
 [node name="MainMenu" type="CenterContainer"]
 texture_filter = 1

@@ -1,6 +1,6 @@
 extends Control
 
-@export var mainMenu = load("res://Scenes/Menu/MainMenu.tscn")
+@export var mainMenu = load("res://scenes/Menu/MainMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

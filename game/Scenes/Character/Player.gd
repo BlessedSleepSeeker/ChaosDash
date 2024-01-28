@@ -1,10 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var PROJO_SPAWNPOINT_R = $ProjoSpawnPointRight
+@onready var PROJO_SPAWNPOINT_L = $ProjoSpawnPointLeft
+
+@onready var state_machine = $StateMachine
 
 @export var PLAYER_NBR: int = 1
 
-#unit moved by player
+#movement physics
 @export var GRAVITY: int = 20
 @export var JUMP_IMPULSE: float = -200
 @export var MAX_JUMP_HOLD_FRAMES: int = 2
@@ -17,6 +21,11 @@ extends CharacterBody2D
 @export var AIR_DRIFT: int = 10
 @export var JUMPSQUAT: int = 3
 
+@export var ATTACK_FRAME_DATA: int = 20
+@export var ATTACK_COOLDOWN: int = 80
+@export var ATTACK_AIR_IASA: int = 8
+@export var STUN_DURATION: int = 30
+
 # chaos modifier
 @export var CHAOS_HORIZONTAL_MODIFIER: int = 0
 
@@ -27,8 +36,6 @@ extends CharacterBody2D
 @onready var act_attack = "p%d_attack" % PLAYER_NBR
 
 @onready var animSprite: AnimatedSprite2D = $AnimSprite
-
-
 
 var is_jumping: bool = false
 var is_fastfalling: bool = false
@@ -82,3 +89,18 @@ func chaosWind(wind: int):
 
 func chaosGroundSpeed(new: int):
 	MAX_GROUND_SPEED += new
+
+func hit() -> void:
+	state_machine.transition_to("FreeFall")
+
+func death() -> void:
+	state_machine.transition_to("Death")
+
+func parade() -> void:
+	state_machine.transition_to("Parade")
+
+func readyLevel(startPos: Vector2) -> void:
+	position = startPos
+	velocity.x = 0
+	velocity.y = 0
+	state_machine.transition_to("Idle")

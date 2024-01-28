@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://8xt6joiuavix"]
 
-[ext_resource type="Script" path="res://Scenes/UI/ScorePanel.gd" id="1_u10jj"]
+[ext_resource type="Script" path="res://scenes/UI/ScorePanel.gd" id="1_u10jj"]
 [ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_vfbas"]
 [ext_resource type="Texture2D" uid="uid://femn7ioi7bvr" path="res://Assets/Player/portrait.png" id="2_b8fa6"]
 

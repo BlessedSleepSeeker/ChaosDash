@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://fpggvqe00l0x"]
+
+[ext_resource type="Texture2D" uid="uid://dv1t7ui31wlex" path="res://Assets/Tiles/TilesScenesSprites/checkpoint.png" id="1_lrtgd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_en114"]
+size = Vector2(16, 16)
+
+[node name="CheckPoint" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_en114")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lrtgd")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5gawol3souh6"]
 
-[ext_resource type="Script" path="res://Scenes/Character/SplitCamera.gd" id="1_mnqr2"]
+[ext_resource type="Script" path="res://scenes/Character/SplitCamera.gd" id="1_mnqr2"]
 
 [node name="Camera2D" type="Camera2D"]
 offset = Vector2(150, -180)
