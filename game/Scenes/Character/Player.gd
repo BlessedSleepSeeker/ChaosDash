@@ -25,6 +25,9 @@ extends CharacterBody2D
 @export var ATTACK_COOLDOWN: int = 80
 @export var ATTACK_AIR_IASA: int = 8
 @export var STUN_DURATION: int = 30
+@export var GRACE_PERIOD: int = 60
+
+var frame_count_grace: int = 0
 
 # chaos modifier
 @export var CHAOS_HORIZONTAL_MODIFIER: int = 0
@@ -66,6 +69,7 @@ func _process(_delta):
 		animSprite.flip_h = false
 
 func _physics_process(_delta):
+	frame_count_grace += 1
 	velocity.y += GRAVITY
 	if is_fastfalling:
 		velocity.y = clampf(velocity.y, JUMP_IMPULSE * MAX_JUMP_HOLD_FRAMES, MAX_FASTFALL_SPEED)
@@ -91,7 +95,9 @@ func chaosGroundSpeed(new: int):
 	MAX_GROUND_SPEED += new
 
 func hit() -> void:
-	state_machine.transition_to("FreeFall")
+	if frame_count_grace > GRACE_PERIOD:
+		frame_count_grace = 0
+		state_machine.transition_to("FreeFall")
 
 func death() -> void:
 	state_machine.transition_to("Death")
