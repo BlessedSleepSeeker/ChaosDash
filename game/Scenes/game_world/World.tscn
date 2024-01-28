@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://crow5huq87jix"]
+[gd_scene load_steps=9 format=3 uid="uid://crow5huq87jix"]
 
 [ext_resource type="Script" path="res://scenes/game_world/WorldHandler.gd" id="1_gtwtk"]
 [ext_resource type="Script" path="res://scenes/game_world/SplitScreenHandler.gd" id="1_h66fm"]
-[ext_resource type="PackedScene" uid="uid://clfvgf4p2ahqb" path="res://scenes/Character/Player.tscn" id="1_ij7vc"]
+[ext_resource type="Script" path="res://scenes/game_world/PlayerViewport.gd" id="3_0oxfx"]
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="3_pebid"]
 [ext_resource type="PackedScene" uid="uid://bjabk0w0v8xsf" path="res://scenes/game_world/LevelHandler.tscn" id="3_w3l1v"]
 [ext_resource type="PackedScene" uid="uid://b2a2hxpnisbot" path="res://scenes/game_world/ChaosModifiers/ChaosHandler.tscn" id="5_qmwld"]
+[ext_resource type="Texture2D" uid="uid://bbxuh1htwfmc7" path="res://Assets/Player/UI/LifeCounter3.png" id="5_ufkwc"]
+[ext_resource type="Texture2D" uid="uid://b1h4mevk82262" path="res://Assets/Player/portraitNeutral.png" id="6_b3mkv"]
 
 [node name="WorldRoot" type="Node"]
 script = ExtResource("1_gtwtk")
@@ -23,13 +26,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_pebid")
 script = ExtResource("1_h66fm")
 
 [node name="MainSubview" type="SubViewportContainer" parent="SplitScreenHandler"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("3_pebid")
 stretch = true
+script = ExtResource("3_0oxfx")
 
 [node name="SubViewport" type="SubViewport" parent="SplitScreenHandler/MainSubview"]
 transparent_bg = true
@@ -42,6 +48,38 @@ render_target_update_mode = 4
 
 [node name="LevelHandler" parent="SplitScreenHandler/MainSubview/SubViewport" instance=ExtResource("3_w3l1v")]
 
-[node name="Player1" parent="SplitScreenHandler/MainSubview/SubViewport" instance=ExtResource("1_ij7vc")]
+[node name="M" type="MarginContainer" parent="SplitScreenHandler/MainSubview"]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="SplitScreenHandler/MainSubview/M"]
+layout_mode = 2
+
+[node name="Energy" type="TextureRect" parent="SplitScreenHandler/MainSubview/M/HB"]
+layout_mode = 2
+texture = ExtResource("5_ufkwc")
+
+[node name="VB" type="VBoxContainer" parent="SplitScreenHandler/MainSubview/M/HB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Score" type="Label" parent="SplitScreenHandler/MainSubview/M/HB/VB"]
+layout_mode = 2
+text = "10 Points"
+
+[node name="Stocks" type="HBoxContainer" parent="SplitScreenHandler/MainSubview/M/HB/VB"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="SplitScreenHandler/MainSubview/M/HB/VB/Stocks"]
+layout_mode = 2
+texture = ExtResource("6_b3mkv")
+
+[node name="C" type="CenterContainer" parent="SplitScreenHandler/MainSubview/M/HB/VB/Stocks"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stocks" type="Label" parent="SplitScreenHandler/MainSubview/M/HB/VB/Stocks/C"]
+layout_mode = 2
+text = "x 3"
 
 [node name="ChaosHandler" parent="." instance=ExtResource("5_qmwld")]

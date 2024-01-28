@@ -10,7 +10,7 @@ extends Node
 
 @export var chaosDescStr: String = "Chaos is Rising : %s"
 
-@export var FIRST_CHAOS_TIMER: int = 10
+@export var FIRST_CHAOS_TIMER: int = 5
 @export var CHAOS_COOLDOWN: int = 20
 
 signal incoming_chaos(chaos: int)
@@ -22,7 +22,8 @@ func _ready():
 	get_tree().create_timer(FIRST_CHAOS_TIMER).timeout.connect(_on_timer_finished)
 
 func _on_timer_finished():
-	triggerChaos(randi() % 3)
+	triggerChaos(randi() % 6)
+	#triggerChaos(5)
 	get_tree().create_timer(CHAOS_COOLDOWN).timeout.connect(_on_timer_finished)
 
 func triggerChaos(chaos: int) -> void:
@@ -54,7 +55,13 @@ func applyChaos(chaos: int) -> void:
 			chaosName = "The wind is blowing"
 		3:
 			splitscreenHandler.callPlayersFunc("chaosGroundSpeed", chaosPower)
-			chaosName = "Sprinting goes %s" % "faster" if chaosPower >= 0 else "slower"
+			chaosName = "Sprinting goes %s" % ("faster" if chaosPower >= 0 else "slower")
+		4:
+			splitscreenHandler.chaosTradeOffer("position")
+			chaosName = "Trade Offer : Position"
+		5:
+			splitscreenHandler.chaosTradeOffer("velocity")
+			chaosName = "Trade Offer : Velocity"
 		_:
 			chaosName = "You feel lucky..."
 	chaosDesc.text = chaosDescStr % chaosName

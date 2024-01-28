@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsj5sw5f5cuym"]
+[gd_scene load_steps=5 format=3 uid="uid://dsj5sw5f5cuym"]
 
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_06d2l"]
 [ext_resource type="Script" path="res://scenes/game_world/PlayerViewport.gd" id="1_q1dcu"]
+[ext_resource type="Texture2D" uid="uid://bbxuh1htwfmc7" path="res://Assets/Player/UI/LifeCounter3.png" id="3_q46b4"]
+[ext_resource type="Texture2D" uid="uid://b1h4mevk82262" path="res://Assets/Player/portraitNeutral.png" id="4_shqar"]
 
 [node name="PlayerViewport" type="SubViewportContainer"]
 anchors_preset = 15
@@ -10,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_06d2l")
 stretch = true
 script = ExtResource("1_q1dcu")
 
@@ -22,3 +26,37 @@ snap_2d_vertices_to_pixel = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(640, 480)
 render_target_update_mode = 4
+
+[node name="M" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="M"]
+layout_mode = 2
+
+[node name="Energy" type="TextureRect" parent="M/HB"]
+layout_mode = 2
+texture = ExtResource("3_q46b4")
+
+[node name="VB" type="VBoxContainer" parent="M/HB"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Score" type="Label" parent="M/HB/VB"]
+layout_mode = 2
+text = "10 Points"
+
+[node name="Stocks" type="HBoxContainer" parent="M/HB/VB"]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="M/HB/VB/Stocks"]
+layout_mode = 2
+texture = ExtResource("4_shqar")
+
+[node name="C" type="CenterContainer" parent="M/HB/VB/Stocks"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stocks" type="Label" parent="M/HB/VB/Stocks/C"]
+layout_mode = 2
+text = "x 3"

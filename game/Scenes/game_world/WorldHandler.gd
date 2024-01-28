@@ -31,6 +31,7 @@ func _on_level_finished(_body: Node2D):
 	if _body is Player:
 		_body.SCORE += 30
 		_body.state_machine.transition_to("parade")
+	splitscreenHandler.resetPlayersForNewLevel()
 	levelTransition = true
 	if self.difficulty == 0:
 		self.difficulty += 1

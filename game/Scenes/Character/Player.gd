@@ -29,16 +29,25 @@ extends CharacterBody2D
 @export var GRACE_PERIOD: int = 60
 
 signal pdeath(p: Player)
+signal health_updated(life: int)
+signal stock_updated(stock: int)
 
-@export var MAX_STOCK: int = 3
-var stock: int = MAX_STOCK
+@export var MAX_STOCK: int = 10
+var stock: int = MAX_STOCK:
+	set(val):
+		stock = val
+		stock_updated.emit(stock)
+
 @export var MAX_LIFE: int = 3
-var life: int = MAX_LIFE
+var life: int = MAX_LIFE:
+	set(val):
+		life = val
+		health_updated.emit(life)
 
 signal score_updated(p: Player, score: int)
 var SCORE: int = 0:
 	set(val):
-		SCORE = val
+		SCORE = val if val > 0 else 0
 		score_updated.emit(self, SCORE)
 
 
@@ -79,7 +88,10 @@ func reassignControls():
 	act_attack = "p%d_attack" % PLAYER_NBR
 
 func _ready():
-	animSprite.modulate = playersColor[PLAYER_NBR - 1]
+	animSprite.modulate = getPlayerColor()
+
+func getPlayerColor():
+	return playersColor[PLAYER_NBR - 1]
 
 func _unhandled_input(_event):
 	pass
@@ -117,26 +129,35 @@ func chaosWind(wind: int):
 func chaosGroundSpeed(new: int):
 	MAX_GROUND_SPEED += new
 
+signal got_hit(remainingLife: int)
+
 func hit() -> void:
 	if frame_count_grace > GRACE_PERIOD:
 		frame_count_grace = 0
 		life -= 1
+		got_hit.emit(life)
 		if life > 0:
 			state_machine.transition_to("FreeFall")
 		else:
 			life = MAX_LIFE
 			death()
 
+signal died(remainingStocks: int)
+
 func death() -> int:
 	stock -= 1
+	SCORE -= 1
 	state_machine.transition_to("Death")
 	await get_tree().create_timer(1.0).timeout
 	resurect(last_spawnpoint)
 	pdeath.emit(self)
+	died.emit(stock)
 	return stock
 
 func parade() -> void:
 	state_machine.transition_to("Parade")
+
+signal getting_ready
 
 func readyLevel(startPos: Vector2) -> void:
 	last_spawnpoint = startPos
@@ -144,6 +165,7 @@ func readyLevel(startPos: Vector2) -> void:
 	position = startPos
 	velocity.x = 0
 	velocity.y = 0
+	getting_ready.emit()
 	state_machine.transition_to("Idle")
 
 func resurect(startPos: Vector2) -> void:
@@ -152,5 +174,8 @@ func resurect(startPos: Vector2) -> void:
 	else:
 		eliminated()
 
+signal _eliminated
+
 func eliminated() -> void:
 	state_machine.transition_to("OutOfGame")
+	_eliminated.emit()

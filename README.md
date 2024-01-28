@@ -28,7 +28,7 @@ objectif : arriver en premier au bout
 - ~~Idle~~
 - ~~Course~~
 - ~~Saut~~
-- Attaque : projectile physique qui annule le momentum (sous cooldown) mais qui peut se faire sauter dessus
+- ~~Attaque : projectile physique qui annule le momentum (sous cooldown)~~ mais qui peut se faire sauter dessus
 - ~~friction au sol~~
 - ~~aerial drift~~
 - ~~fast fall~~
@@ -37,11 +37,11 @@ objectif : arriver en premier au bout
 
 - ~~sol~~
 - ~~plateforme~~
-- plateforme traversable?
+- ~~plateforme traversable?~~
 - ~~bloc?~~
 - ennemi de base
-- projectile
-- trou
+- ~~projectile~~
+- ~~trou~~
 
 ### Bordel
 
@@ -49,10 +49,10 @@ objectif : arriver en premier au bout
 - le bordel ne disparait pas et se stack petit à petit.
 
 - slow-mo
-- on ice
-- vent fort
+- ~~on ice~~
+- ~~vent fort~~
 - pluie d'enemi
-- inversion des positions des joueurs
+- ~~inversion des positions des joueurs~~
 - attaque melange les controles des joueurs touchés au lieu de les stun
 - floor is chaud (si sur le sol + de x temps : stun)
 - effets de caméra varié : shader de flou, wavy, ascii art...
