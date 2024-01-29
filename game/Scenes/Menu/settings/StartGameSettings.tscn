@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bw4choumxblbr"]
 
 [ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_p35oj"]
-[ext_resource type="Script" path="res://scenes/Menu/StartGameSettings.gd" id="2_bit4h"]
+[ext_resource type="Script" path="res://scenes/Menu/settings/StartGameSettings.gd" id="2_bit4h"]
 [ext_resource type="Texture2D" uid="uid://dgrh76vm86fey" path="res://Assets/TitleScreen/title.png" id="2_pyyso"]
 [ext_resource type="Texture2D" uid="uid://ckwro78vd0ov0" path="res://Assets/Player/lapingue.png" id="3_5ot2n"]
 
@@ -50,7 +50,7 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="VB/MarginContainer"]
 layout_mode = 2
-text = "> I am ready <"
+text = "I am ready"
 
 [node name="CenterContainer" type="CenterContainer" parent="VB"]
 layout_mode = 2
@@ -77,6 +77,17 @@ texture_normal = SubResource("AtlasTexture_0scvy")
 texture_pressed = SubResource("AtlasTexture_syxc4")
 texture_hover = SubResource("AtlasTexture_y6ojo")
 
+[node name="MCon" type="MarginContainer" parent="VB"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VB/MCon"]
+layout_mode = 2
+text = "Nevermind"
+
+[node name="AssignementPark" type="Control" parent="."]
+layout_mode = 2
+
 [connection signal="pressed" from="VB/MarginContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VB/CenterContainer/UpButton" to="." method="_on_up_button_pressed"]
 [connection signal="pressed" from="VB/CenterContainer2/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="VB/MCon/BackButton" to="." method="_on_back_button_pressed"]

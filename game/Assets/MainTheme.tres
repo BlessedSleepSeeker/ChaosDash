@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c1e08ke8dkqgy"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c1e08ke8dkqgy"]
 
 [ext_resource type="FontFile" uid="uid://cmrl2ud2gbcsr" path="res://Assets/Font/sci-bi.ttf" id="1_tttqy"]
+[ext_resource type="Texture2D" uid="uid://c73iq8u6bwdgu" path="res://Assets/UI/panelcontainer.png" id="2_yhp1k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ndwxm"]
 
@@ -16,6 +17,13 @@ grow_begin = -5.0
 grow_end = -5.0
 thickness = 5
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0tq4"]
+texture = ExtResource("2_yhp1k")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
 [resource]
 Button/font_sizes/font_size = 40
 Button/fonts/font = ExtResource("1_tttqy")
@@ -25,3 +33,4 @@ Button/styles/hover = SubResource("StyleBoxEmpty_3v54b")
 Button/styles/normal = SubResource("StyleBoxEmpty_3cvge")
 Button/styles/pressed = SubResource("StyleBoxLine_xb3xy")
 Label/fonts/font = ExtResource("1_tttqy")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_d0tq4")

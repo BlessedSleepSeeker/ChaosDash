@@ -1,7 +1,7 @@
 extends CenterContainer
 
 @export var creditsScenePath := "res://scenes/Menu/CreditsScene.tscn"
-@export var gameSettingPath := "res://scenes/Menu/StartGameSettings.tscn"
+@export var gameSettingPath := "res://scenes/Menu/settings/StartGameSettings.tscn"
 
 @onready var playBtn = $VBox/Play
 @onready var creditsBtn = $VBox/Credits

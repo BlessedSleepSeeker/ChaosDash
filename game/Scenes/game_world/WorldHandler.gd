@@ -8,7 +8,7 @@ extends Node
 @onready var chaosHandler: ChaosHandler = $ChaosHandler
 
 @export var difficulty: int = 0
-@export var playerCount: int = 0
+@export var player_count: int = 0
 
 @onready var players: Array = []
 var levelHandler: LevelHandler
@@ -19,10 +19,10 @@ var levelTransition: bool = false
 func _ready():
 
 	# Add a columns for player 3, 5, 7 and so on..
-	splitGrid.columns = (playerCount / 2) + playerCount % 2
+	splitGrid.columns = (player_count / 2) + player_count % 2
 
 	var levelHandlerWorld: World2D = null
-	for i in range(0, playerCount):
+	for i in range(0, player_count):
 		var playerViewport: PlayerViewport = null
 		playerViewport = playerViewportScene.instantiate()
 		splitGrid.add_child(playerViewport)
