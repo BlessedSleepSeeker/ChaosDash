@@ -30,16 +30,16 @@ func set_missing_players_actions() -> bool:
 	var missing_action = InputHandler.check_players_actions(player_count)
 	if missing_action != "":
 		var instance = action_assignement_panel_scene.instantiate()
-		instance.action_set.connect(_on_action_set)
+		instance.action_set.connect(missing_action_loop)
 		add_child(instance)
 		instance.action_name = missing_action
 		return false
 	else:
 		return true
 
-func _on_action_set():
+func missing_action_loop():
 	if set_missing_players_actions():
-		#save the settings here !
+		InputHandler.save_actions_to_file()
 		startGame()
 
 
@@ -52,7 +52,7 @@ func startGame() -> void:
 
 func _on_button_pressed():
 	InputHandler.load_players_actions_from_file(player_count)
-	set_missing_players_actions()
+	missing_action_loop()
 
 
 func _on_back_button_pressed():

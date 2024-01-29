@@ -88,18 +88,6 @@ func check_player_action(player_nbr: int, action: String) -> String:
 		return ""
 	return act
 
-
-# logic should be :
-# get number of players
-# do all player have their 5 actions defined ?
-# yes > we ball
-# no > get actions, then save them to file
-
-
-func load_input_from_file() -> void:
-	pass
-	#
-
 func flush_actions() -> void:
 	for act in InputMap.get_actions():
 		if not act.begins_with("ui_"):
@@ -110,6 +98,14 @@ func get_value(section: String, setting: String) -> Variant:
 
 func set_value(section: String, setting: String, value: Variant) -> void:
 	input_file.set_value(section, setting, value)
+
+func save_actions_to_file() -> void:
+	for action_name in InputMap.get_actions():
+		if action_name.begins_with("p"):
+			var split = action_name.split("_", false, 1)
+			var player_nbr = split[0].lstrip("p")
+			set_value("Player %s" % player_nbr, action_name, InputMap.action_get_events(action_name)[0].as_text())
+	save_file()
 
 func save_file() -> int:
 	print_debug('Saving player input file at %s.' % controls_file_path )
