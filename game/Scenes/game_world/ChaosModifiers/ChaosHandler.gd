@@ -1,8 +1,7 @@
 class_name ChaosHandler
 extends Node
 
-@onready var levelHandler: LevelHandler = get_parent().get_node("SplitScreenHandler").get_node("MainSubview").get_node("SubViewport").get_node("LevelHandler")
-@onready var splitscreenHandler: SplitScreenHandler = get_parent().get_node("SplitScreenHandler")
+@onready var worldHandler: WorldHandler = get_parent()
 
 @onready var animPlayer: AnimationPlayer = $AnimationPlayer
 @onready var chaosInc: Label = $M/C/ChaosIncoming
@@ -39,28 +38,28 @@ func getChaosPower() -> int:
 
 func applyChaos(chaos: int) -> void:
 	var chaosPower = getChaosPower()
-	print(chaos)
-	print(chaosPower)
+	#print(chaos)
+	#print(chaosPower)
 	unleash_chaos.emit(chaos, chaosPower)
 	var chaosName: String
 	match chaos:
 		0:
-			splitscreenHandler.callPlayersFunc("chaosGravity", chaosPower)
+			worldHandler.callPlayersFunc("chaosGravity", chaosPower)
 			chaosName = "You feel %s" % ("heavier" if chaosPower <= 0 else "lighter")
 		1:
-			splitscreenHandler.callPlayersFunc("chaosFriction", chaosPower)
+			worldHandler.callPlayersFunc("chaosFriction", chaosPower)
 			chaosName = "Tokyo Drifting" if chaosPower <= 0 else "No Drift Allowed"
 		2:
-			splitscreenHandler.callPlayersFunc("chaosWind", chaosPower / 3)
+			worldHandler.callPlayersFunc("chaosWind", chaosPower / 3)
 			chaosName = "The wind is blowing"
 		3:
-			splitscreenHandler.callPlayersFunc("chaosGroundSpeed", chaosPower)
+			worldHandler.callPlayersFunc("chaosGroundSpeed", chaosPower)
 			chaosName = "Sprinting goes %s" % ("faster" if chaosPower >= 0 else "slower")
 		4:
-			splitscreenHandler.chaosTradeOffer("position")
+			worldHandler.chaosTradeOffer("position")
 			chaosName = "Trade Offer : Position"
 		5:
-			splitscreenHandler.chaosTradeOffer("velocity")
+			worldHandler.chaosTradeOffer("velocity")
 			chaosName = "Trade Offer : Velocity"
 		_:
 			chaosName = "You feel lucky..."

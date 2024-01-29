@@ -4,6 +4,7 @@ func enter(_msg := {}) -> void:
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
 	player.animSprite.play("death")
+	player.v_direction = 0
 
 func handle_input(_event: InputEvent) -> void:
 	pass

@@ -28,10 +28,7 @@ extends CharacterBody2D
 @export var STUN_DURATION: int = 30
 @export var GRACE_PERIOD: int = 60
 
-signal pdeath(p: Player)
-signal health_updated(life: int)
 signal stock_updated(stock: int)
-
 @export var MAX_STOCK: int = 10
 var stock: int = MAX_STOCK:
 	set(val):
@@ -44,12 +41,12 @@ var life: int = MAX_LIFE:
 		life = val
 		health_updated.emit(life)
 
+signal health_updated(life: int)
 signal score_updated(p: Player, score: int)
 var SCORE: int = 0:
 	set(val):
 		SCORE = val if val > 0 else 0
 		score_updated.emit(self, SCORE)
-
 
 var frame_count_grace: int = 0
 var last_spawnpoint: Vector2 = Vector2.ZERO
@@ -73,7 +70,7 @@ var is_jumping: bool = false
 var is_fastfalling: bool = false
 var v_direction := float()
 
-const playersColor: Array = [Color8(230, 45, 107), Color8(46, 199, 230), Color8(255, 230, 102), Color.FOREST_GREEN]
+const playersColor: Array = [Color8(230, 45, 107), Color8(46, 199, 230), Color8(255, 230, 102), Color.FOREST_GREEN, Color.CRIMSON, Color.DARK_TURQUOISE, Color.GOLD, Color.SEA_GREEN]
 
 
 
@@ -91,7 +88,7 @@ func _ready():
 	animSprite.modulate = getPlayerColor()
 
 func getPlayerColor():
-	return playersColor[PLAYER_NBR - 1]
+	return playersColor[PLAYER_NBR - 1] if PLAYER_NBR - 1 < playersColor.size() else Color.SIENNA
 
 func _unhandled_input(_event):
 	pass
@@ -150,7 +147,6 @@ func death() -> int:
 	state_machine.transition_to("Death")
 	await get_tree().create_timer(1.0).timeout
 	resurect(last_spawnpoint)
-	pdeath.emit(self)
 	died.emit(stock)
 	return stock
 

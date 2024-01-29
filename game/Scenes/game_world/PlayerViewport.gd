@@ -28,6 +28,11 @@ const STOCK_STR = "x %d"
 
 var player: Player
 
+# we need only one viewport to host the actual level, every other viewport get a pointer to this one's world_2d
+func setLevelHandler(levelHandler: LevelHandler) -> World2D:
+	viewport.add_child(levelHandler)
+	return viewport.world_2d
+
 func setPlayerNbr(nbr: int):
 	PLAYER_NBR = nbr
 	var instance: Player = playerScene.instantiate()
