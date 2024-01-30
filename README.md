@@ -55,6 +55,8 @@ Un platformer multi party game bordélique.
 - [X] Local Split-Screen 2 to infinity (in theory)
   - [X] Refactor to have only one main handler
 - [ ] Button Remaping and dynamic action creations for players
+  - [X] On Game Start : check if every player has actions, if not, prompt for the missing ones
+  - [ ] On settings tab
 
 ### Polish
 
@@ -131,6 +133,13 @@ Listes des modifiers :
 
 ## Bugs
 
-- [ ] WorldHandler.ChaosTradeOffer() crash if there is only one player (oob access to array prob)
+- [X] WorldHandler.ChaosTradeOffer() crash if there is only one player (oob access to array prob)
+  - edge case handled : added a check if there is only one player available for the swap to return
 - [X] Direction is conserved after respawn, even if no input is pressed
   - Flushing v_direction on death resolved the issue.
+- [X] Life UI not updated after respawning
+  - No signal was connected to handle this case
+- [X] Character sometimes appear behind the world
+  - [X] Added z-index
+- [X] Dying does not update to the right portrait
+  - Dying updated score, which triggered another portrait change. The score update ui callback now check the old and new score to determine if it should put the cool portrait or not

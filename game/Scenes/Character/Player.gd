@@ -28,6 +28,7 @@ extends CharacterBody2D
 @export var STUN_DURATION: int = 30
 @export var GRACE_PERIOD: int = 60
 
+signal respawning(life: int)
 signal stock_updated(stock: int)
 @export var MAX_STOCK: int = 10
 var stock: int = MAX_STOCK:
@@ -42,11 +43,12 @@ var life: int = MAX_LIFE:
 		health_updated.emit(life)
 
 signal health_updated(life: int)
-signal score_updated(p: Player, score: int)
+signal score_updated(p: Player, new_score: int, old_score: int)
 var SCORE: int = 0:
 	set(val):
-		SCORE = val if val > 0 else 0
-		score_updated.emit(self, SCORE)
+		val = val if val > 0 else 0
+		score_updated.emit(self, val, SCORE)
+		SCORE = val
 
 var frame_count_grace: int = 0
 var last_spawnpoint: Vector2 = Vector2.ZERO
@@ -167,6 +169,7 @@ func readyLevel(startPos: Vector2) -> void:
 func resurect(startPos: Vector2) -> void:
 	if stock > 0:
 		readyLevel(startPos)
+		respawning.emit(life)
 	else:
 		eliminated()
 

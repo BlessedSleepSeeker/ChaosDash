@@ -24,6 +24,3 @@ grow_vertical = 2
 theme = ExtResource("3_pebid")
 
 [node name="ChaosHandler" parent="." instance=ExtResource("5_qmwld")]
-chaosDescStr = null
-FIRST_CHAOS_TIMER = null
-CHAOS_COOLDOWN = null

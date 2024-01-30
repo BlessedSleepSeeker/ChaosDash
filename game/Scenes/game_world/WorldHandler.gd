@@ -29,11 +29,11 @@ func _ready():
 		if i == 0:
 			levelHandler = levelHandlerScene.instantiate()
 			# we need only one viewport to host the actual level, every other viewport get a pointer to this one's world_2d
-			levelHandlerWorld = playerViewport.setLevelHandler(levelHandler)
+			levelHandlerWorld = playerViewport.set_level_handler(levelHandler)
 		else:
-			playerViewport.setWorld(levelHandlerWorld)
-		playerViewport.setPlayerNbr(i + 1)
-		players.append(playerViewport.getPlayer())
+			playerViewport.set_world(levelHandlerWorld)
+		playerViewport.set_player_nbr(i + 1)
+		players.append(playerViewport.get_player())
 	connectToLvlHandler()
 	createPlayersActions()
 	setUpLevel(difficulty)
@@ -88,6 +88,9 @@ func chaosTradeOffer(param: String):
 	for p in players:
 		if p.state_machine.state.name != "Death" || p.state_machine.state.name != "OutOfGame":
 			params.append(p.get(param))
+	# avoid oob crashes
+	if params.size() <= 1:
+		return
 	var i := 1
 	#print_debug(params)
 	for p in players:
