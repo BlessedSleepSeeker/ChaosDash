@@ -19,7 +19,7 @@ region = Rect2(96, 0, 16, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0scvy"]
 atlas = ExtResource("3_5ot2n")
-region = Rect2(113, 0, 14, 22)
+region = Rect2(112, 0, 16, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_syxc4"]
 atlas = ExtResource("3_5ot2n")
@@ -42,52 +42,56 @@ script = ExtResource("2_bit4h")
 layout_mode = 2
 texture = ExtResource("2_pyyso")
 
-[node name="VB" type="VBoxContainer" parent="."]
+[node name="AssignementPark" type="Control" parent="."]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VB"]
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="VB" type="VBoxContainer" parent="MC"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VB/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MC/VB"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MC/VB/MarginContainer"]
 layout_mode = 2
 text = "I am ready"
 
-[node name="CenterContainer" type="CenterContainer" parent="VB"]
+[node name="CenterContainer" type="CenterContainer" parent="MC/VB"]
 layout_mode = 2
 
-[node name="UpButton" type="TextureButton" parent="VB/CenterContainer"]
+[node name="UpButton" type="TextureButton" parent="MC/VB/CenterContainer"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_4xnrq")
 texture_pressed = SubResource("AtlasTexture_3rkma")
 texture_hover = SubResource("AtlasTexture_r4cun")
 
-[node name="HB" type="CenterContainer" parent="VB"]
+[node name="HB" type="CenterContainer" parent="MC/VB"]
 layout_mode = 2
 
-[node name="PlayerNbr" type="Label" parent="VB/HB"]
+[node name="PlayerNbr" type="Label" parent="MC/VB/HB"]
 layout_mode = 2
 text = "Player(s)"
 
-[node name="CenterContainer2" type="CenterContainer" parent="VB"]
+[node name="CenterContainer2" type="CenterContainer" parent="MC/VB"]
 layout_mode = 2
 
-[node name="DownButton" type="TextureButton" parent="VB/CenterContainer2"]
+[node name="DownButton" type="TextureButton" parent="MC/VB/CenterContainer2"]
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_0scvy")
 texture_pressed = SubResource("AtlasTexture_syxc4")
 texture_hover = SubResource("AtlasTexture_y6ojo")
 
-[node name="MCon" type="MarginContainer" parent="VB"]
+[node name="MCon" type="MarginContainer" parent="MC/VB"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="VB/MCon"]
+[node name="BackButton" type="Button" parent="MC/VB/MCon"]
 layout_mode = 2
 text = "Nevermind"
 
-[node name="AssignementPark" type="Control" parent="."]
-layout_mode = 2
-
-[connection signal="pressed" from="VB/MarginContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VB/CenterContainer/UpButton" to="." method="_on_up_button_pressed"]
-[connection signal="pressed" from="VB/CenterContainer2/DownButton" to="." method="_on_down_button_pressed"]
-[connection signal="pressed" from="VB/MCon/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MC/VB/MarginContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MC/VB/CenterContainer/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="MC/VB/CenterContainer2/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="MC/VB/MCon/BackButton" to="." method="_on_back_button_pressed"]

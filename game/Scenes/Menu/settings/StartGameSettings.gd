@@ -6,7 +6,7 @@ extends CenterContainer
 
 @export var MAX_PLAYER: int = 8
 
-@onready var lbl: Label = $VB/HB/PlayerNbr
+@onready var lbl: Label = $MC/VB/HB/PlayerNbr
 @onready var assignement_park = $AssignementPark
 
 const lblTxt: String = "%d Player(s)"

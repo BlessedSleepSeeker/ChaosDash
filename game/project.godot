@@ -23,11 +23,12 @@ InputHandler="*res://autoloads/inputhandler.gd"
 [display]
 
 window/size/viewport_width=640
-window/size/viewport_height=480
-window/size/mode=3
+window/size/viewport_height=360
+window/size/resizable=false
 window/size/window_width_override=1920
 window/size/window_height_override=1080
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [layer_names]
 
