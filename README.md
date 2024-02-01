@@ -60,6 +60,8 @@ Un platformer multi party game bordélique.
 
 ### Polish
 
+- [ ] SceneHandler, doing transition between scenes
+
 - [ ] Animations
   - [ ] Spawn des joueurs au début du niveau
     - [ ] Spawn in 1 par 1

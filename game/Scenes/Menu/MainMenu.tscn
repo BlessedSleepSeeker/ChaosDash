@@ -29,10 +29,15 @@ text = "Play"
 layout_mode = 2
 text = "Credits"
 
+[node name="Settings" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Settings"
+
 [node name="Exit" type="Button" parent="VBox"]
 layout_mode = 2
 text = "Exit"
 
 [connection signal="pressed" from="VBox/Play" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBox/Credits" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBox/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBox/Exit" to="." method="_on_quit_button_pressed"]

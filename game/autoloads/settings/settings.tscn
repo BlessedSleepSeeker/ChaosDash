@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://s46wqxnh4dnl"]
+
+[ext_resource type="Script" path="res://autoloads/settings/settings.gd" id="1_dbr6m"]
+[ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Resolution.gd" id="2_g3vyq"]
+[ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Vsync.gd" id="3_b8qgr"]
+
+[node name="Settings" type="Node"]
+script = ExtResource("1_dbr6m")
+
+[node name="Resolution" type="Node" parent="."]
+script = ExtResource("2_g3vyq")
+section = "Window"
+key = "RESOLUTION"
+type = 2
+
+[node name="Vsync" type="Node" parent="."]
+script = ExtResource("3_b8qgr")
+section = "Window"
+key = "VSYNC"

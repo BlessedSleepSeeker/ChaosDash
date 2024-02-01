@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://dalktguxudra8"]
+
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_yu0as"]
+
+[node name="SettingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("1_yu0as")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[node name="Settings" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VB" type="VBoxContainer" parent="Settings"]
+layout_mode = 2
+
+[node name="SettingsSections" type="HBoxContainer" parent="Settings/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/VB/SettingsSections"]
+layout_mode = 2
+text = "option 1"
+
+[node name="Scroll" type="ScrollContainer" parent="Settings/VB"]
+layout_mode = 2
+
+[node name="OptionList" type="VBoxContainer" parent="Settings/VB/Scroll"]
+layout_mode = 2
