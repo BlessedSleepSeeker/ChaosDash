@@ -1,7 +1,7 @@
 extends Setting
 
 const GAME_RESOLUTION: Array = ["640x360", "1280x720", "1920x1080", "2560x1440", "3200x1800", "3840x2160"]
-@onready var base_value = "640x360"
+@export var base_value: String = "640x360"
 
 func _ready():
 	value = base_value

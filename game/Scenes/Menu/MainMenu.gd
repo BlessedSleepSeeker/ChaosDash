@@ -2,10 +2,7 @@ extends CenterContainer
 
 @export var creditsScenePath := "res://scenes/Menu/CreditsScene.tscn"
 @export var gameSettingPath := "res://scenes/Menu/settings/StartGameSettings.tscn"
-
-@onready var playBtn = $VBox/Play
-@onready var creditsBtn = $VBox/Credits
-@onready var quitBtn = $VBox/Exit
+@export var settings_screen_path := "res://scenes/Menu/settings/settings_screen.tscn"
 
 signal transition(new_scene: PackedScene)
 
@@ -25,4 +22,5 @@ func _on_play_button_pressed():
 	transition.emit(gameScene)
 
 func _on_settings_pressed():
-	pass # Replace with function body.
+	var settings_scene = load(settings_screen_path)
+	transition.emit(settings_scene)

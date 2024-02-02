@@ -1,19 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://s46wqxnh4dnl"]
+[gd_scene load_steps=7 format=3 uid="uid://s46wqxnh4dnl"]
 
 [ext_resource type="Script" path="res://autoloads/settings/settings.gd" id="1_dbr6m"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Resolution.gd" id="2_g3vyq"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Vsync.gd" id="3_b8qgr"]
+[ext_resource type="Script" path="res://autoloads/settings/settings_scripts/MaxFrameRate.gd" id="4_07xv1"]
+[ext_resource type="Script" path="res://autoloads/settings/settings_scripts/AudioBusVolume.gd" id="5_c4hqd"]
+[ext_resource type="Script" path="res://autoloads/settings/settings_scripts/MuteInBackground.gd" id="6_dhgul"]
 
 [node name="Settings" type="Node"]
 script = ExtResource("1_dbr6m")
+user_settings_file_path = null
 
-[node name="Resolution" type="Node" parent="."]
+[node name="Window" type="Node" parent="."]
+
+[node name="Resolution" type="Node" parent="Window"]
 script = ExtResource("2_g3vyq")
-section = "Window"
+base_value = "1280x720"
 key = "RESOLUTION"
 type = 2
 
-[node name="Vsync" type="Node" parent="."]
+[node name="Vsync" type="Node" parent="Window"]
 script = ExtResource("3_b8qgr")
-section = "Window"
 key = "VSYNC"
+
+[node name="MaxFrameRate" type="Node" parent="Window"]
+script = ExtResource("4_07xv1")
+key = "MAX_FRAME_RATE"
+type = 2
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="MasterVolume" type="Node" parent="Sound"]
+script = ExtResource("5_c4hqd")
+key = "MASTER_VOLUME"
+type = 1
+
+[node name="MusicVolume" type="Node" parent="Sound"]
+script = ExtResource("5_c4hqd")
+bus_name = "Music"
+key = "MUSIC_VOLUME"
+type = 1
+
+[node name="SoundEffectVolume" type="Node" parent="Sound"]
+script = ExtResource("5_c4hqd")
+bus_name = "Sound Effect"
+key = "SOUND_EFFECT_VOLUME"
+type = 1
+
+[node name="MuteInBackground" type="Node" parent="Sound"]
+script = ExtResource("6_dhgul")
+key = "MUTE_IN_BACKGROUND"
