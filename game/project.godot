@@ -10,11 +10,13 @@ config_version=5
 
 [application]
 
-config/name="ChaosRunner"
-config/description="Global Game Jam 2024 Submission"
+config/name="Carrots of Chaos"
+config/description="Create Chaos and Compete against your friends to be the last one alive, or the first one to the prized Carrot of Chaos !"
+config/version="0.7"
 run/main_scene="res://autoloads/custom_root/root.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/use_filter=false
+config/icon="res://Assets/Player/portraitNeutral.png"
 
 [autoload]
 
@@ -23,7 +25,7 @@ InputHandler="*res://autoloads/inputhandler.gd"
 [display]
 
 window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_height=359
 window/size/resizable=false
 window/size/window_height_override=720
 window/stretch/mode="viewport"

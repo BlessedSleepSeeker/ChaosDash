@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://s46wqxnh4dnl"]
+[gd_scene load_steps=8 format=3 uid="uid://s46wqxnh4dnl"]
 
 [ext_resource type="Script" path="res://autoloads/settings/settings.gd" id="1_dbr6m"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Resolution.gd" id="2_g3vyq"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Vsync.gd" id="3_b8qgr"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/MaxFrameRate.gd" id="4_07xv1"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/AudioBusVolume.gd" id="5_c4hqd"]
+[ext_resource type="Script" path="res://autoloads/settings/settings_scripts/Fullscreen.gd" id="5_h84ts"]
 [ext_resource type="Script" path="res://autoloads/settings/settings_scripts/MuteInBackground.gd" id="6_dhgul"]
 
 [node name="Settings" type="Node"]
@@ -13,10 +14,16 @@ user_settings_file_path = null
 
 [node name="Window" type="Node" parent="."]
 
+[node name="WindowType" type="Node" parent="Window"]
+script = ExtResource("5_h84ts")
+key = "WINDOW_TYPE"
+type = 2
+
 [node name="Resolution" type="Node" parent="Window"]
 script = ExtResource("2_g3vyq")
 base_value = "1280x720"
 key = "RESOLUTION"
+tooltip = "Only applied when mode is Windowed"
 type = 2
 
 [node name="Vsync" type="Node" parent="Window"]
@@ -26,6 +33,7 @@ key = "VSYNC"
 [node name="MaxFrameRate" type="Node" parent="Window"]
 script = ExtResource("4_07xv1")
 key = "MAX_FRAME_RATE"
+tooltip = "0 is uncapped"
 type = 2
 
 [node name="Sound" type="Node" parent="."]
@@ -50,3 +58,4 @@ type = 1
 [node name="MuteInBackground" type="Node" parent="Sound"]
 script = ExtResource("6_dhgul")
 key = "MUTE_IN_BACKGROUND"
+tooltip = "Mute the Game when the window isn't focused"

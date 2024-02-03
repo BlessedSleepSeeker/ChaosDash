@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dalktguxudra8"]
+[gd_scene load_steps=5 format=3 uid="uid://dalktguxudra8"]
 
 [ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_yu0as"]
 [ext_resource type="Script" path="res://scenes/Menu/settings/settings_screen.gd" id="2_ehjt7"]
+[ext_resource type="Theme" uid="uid://c2l5kustcjttd" path="res://Assets/SettingsTheme.tres" id="3_fu6pn"]
 [ext_resource type="FontFile" uid="uid://cmrl2ud2gbcsr" path="res://Assets/Font/sci-bi.ttf" id="3_lbm4t"]
 
 [node name="SettingScreen" type="Control"]
@@ -36,7 +37,7 @@ layout_mode = 2
 [node name="SettingsTab" type="TabContainer" parent="MC/VB"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("1_yu0as")
+theme = ExtResource("3_fu6pn")
 theme_override_fonts/font = ExtResource("3_lbm4t")
 tab_alignment = 1
 

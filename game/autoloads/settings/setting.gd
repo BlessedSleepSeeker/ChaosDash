@@ -4,6 +4,7 @@ class_name Setting
 # Class for defining a single setting.
 @export_group("Mandatory")
 @export var key: String
+@export var tooltip: String
 var value: Variant
 var default: Variant
 

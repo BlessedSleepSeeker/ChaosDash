@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3kwxhhwlgeix"]
+[gd_scene load_steps=2 format=3 uid="uid://d3kwxhhwlgeix"]
 
 [ext_resource type="Script" path="res://scenes/Menu/settings/setting_tab.gd" id="1_e2f36"]
-[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_v470p"]
 
 [node name="SettingTab" type="MarginContainer"]
 anchors_preset = 15
@@ -9,7 +8,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_v470p")
 script = ExtResource("1_e2f36")
 
 [node name="SC" type="ScrollContainer" parent="."]

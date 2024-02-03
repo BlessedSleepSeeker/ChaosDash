@@ -1,0 +1,94 @@
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://c2l5kustcjttd"]
+
+[ext_resource type="FontFile" uid="uid://cmrl2ud2gbcsr" path="res://Assets/Font/sci-bi.ttf" id="1_chbcb"]
+[ext_resource type="Texture2D" uid="uid://db41xtfa3snyv" path="res://Assets/UI/tickbox/tickboxChecked.png" id="2_dwl5l"]
+[ext_resource type="Texture2D" uid="uid://ksbgt0l0qmdf" path="res://Assets/UI/arrowDown.png" id="2_ktci0"]
+[ext_resource type="Texture2D" uid="uid://big6m13ecia7y" path="res://Assets/UI/separator.png" id="2_pnw38"]
+[ext_resource type="Texture2D" uid="uid://bk3si4m7dqlpv" path="res://Assets/UI/slider/grabber.png" id="2_u6xsq"]
+[ext_resource type="Texture2D" uid="uid://c73iq8u6bwdgu" path="res://Assets/UI/panelcontainer.png" id="2_vnx7p"]
+[ext_resource type="Texture2D" uid="uid://cpird8scg17c4" path="res://Assets/UI/tickbox/tickboxNormal.png" id="2_y21bm"]
+[ext_resource type="Texture2D" uid="uid://c0teprdjcx4w0" path="res://Assets/UI/tickbox/tickboxCheckedDisabled.png" id="3_40qik"]
+[ext_resource type="Texture2D" uid="uid://or6p442ypn57" path="res://Assets/UI/slider/grabberDisabled.png" id="3_fl60j"]
+[ext_resource type="Texture2D" uid="uid://b7sfil86prpi" path="res://Assets/UI/tickbox/tickboxDisabled.png" id="3_ws2p3"]
+[ext_resource type="Texture2D" uid="uid://bvf4tt87jqr0u" path="res://Assets/UI/slider/grabberHighlight.png" id="4_jwaxe"]
+[ext_resource type="Texture2D" uid="uid://roehqobotaxm" path="res://Assets/UI/cross.png" id="4_v6lme"]
+[ext_resource type="Texture2D" uid="uid://hnu73g4ydji0" path="res://Assets/UI/arrowRightDim.png" id="5_8lvqp"]
+[ext_resource type="Texture2D" uid="uid://5pbi3hwwruol" path="res://Assets/UI/slider/slider.png" id="5_di6ba"]
+[ext_resource type="Texture2D" uid="uid://2w6atlptdvp6" path="res://Assets/UI/slider/tick.png" id="5_k4xuf"]
+[ext_resource type="Texture2D" uid="uid://dn3pwpb6nbcs4" path="res://Assets/UI/arrowRightHighlight.png" id="6_h1gba"]
+[ext_resource type="Texture2D" uid="uid://7f8pj8wj4wqk" path="res://Assets/UI/arrowLeftDim.png" id="7_5p8rg"]
+[ext_resource type="Texture2D" uid="uid://cbt67l24c5dca" path="res://Assets/UI/arrowLeftHighlight.png" id="8_mbjbo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ndwxm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rqt4n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3v54b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cvge"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gdab"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yd18f"]
+texture = ExtResource("2_pnw38")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ctnx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6o21r"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j72fk"]
+texture = ExtResource("5_di6ba")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0tq4"]
+texture = ExtResource("2_vnx7p")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[resource]
+default_font = ExtResource("1_chbcb")
+default_font_size = 20
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_chbcb")
+Button/styles/disabled = SubResource("StyleBoxEmpty_ndwxm")
+Button/styles/focus = SubResource("StyleBoxEmpty_rqt4n")
+Button/styles/hover = SubResource("StyleBoxEmpty_3v54b")
+Button/styles/normal = SubResource("StyleBoxEmpty_3cvge")
+Button/styles/pressed = SubResource("StyleBoxEmpty_3gdab")
+CheckBox/icons/checked = ExtResource("2_dwl5l")
+CheckBox/icons/checked_disabled = ExtResource("3_40qik")
+CheckBox/icons/unchecked = ExtResource("2_y21bm")
+CheckBox/icons/unchecked_disabled = ExtResource("3_ws2p3")
+GridContainer/constants/h_separation = 2
+GridContainer/constants/v_separation = 2
+HSeparator/styles/separator = SubResource("StyleBoxTexture_yd18f")
+HSlider/icons/grabber = ExtResource("2_u6xsq")
+HSlider/icons/grabber_disabled = ExtResource("3_fl60j")
+HSlider/icons/grabber_highlight = ExtResource("4_jwaxe")
+HSlider/icons/tick = ExtResource("5_k4xuf")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_0ctnx")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_6o21r")
+HSlider/styles/slider = SubResource("StyleBoxTexture_j72fk")
+Label/fonts/font = ExtResource("1_chbcb")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+OptionButton/icons/arrow = ExtResource("2_ktci0")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_d0tq4")
+TabBar/font_sizes/font_size = 20
+TabBar/fonts/font = ExtResource("1_chbcb")
+TabBar/icons/close = ExtResource("4_v6lme")
+TabBar/icons/decrement = ExtResource("5_8lvqp")
+TabBar/icons/decrement_highlight = ExtResource("6_h1gba")
+TabBar/icons/increment = ExtResource("7_5p8rg")
+TabBar/icons/increment_highlight = ExtResource("8_mbjbo")
