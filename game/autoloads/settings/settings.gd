@@ -101,8 +101,6 @@ func remove_setting(_setting_key: String) -> void:
 	#settings.pop_at(settings.bsearch(setting_key))
 
 
-const DISPLAY_STYLE: Array = ["Windowed", "Full Screen", "Borderless Full Screen"]
-
 func apply_settings() -> void:
 	for section in get_children():
 		for setting in section.get_children():

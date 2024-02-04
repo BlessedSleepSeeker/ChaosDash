@@ -4,7 +4,7 @@ class_name Setting
 # Class for defining a single setting.
 @export_group("Mandatory")
 @export var key: String
-@export var tooltip: String
+@export_multiline var tooltip: String
 var value: Variant
 var default: Variant
 
@@ -25,6 +25,8 @@ enum SETTING_TYPE {
 @export var possible_values: Array:
 	set(val):
 		possible_values = val
+
+@export var possible_values_strings: Array = []
 
 func clear() -> void:
 	value = null

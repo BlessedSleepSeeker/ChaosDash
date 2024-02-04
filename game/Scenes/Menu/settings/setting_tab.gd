@@ -22,6 +22,12 @@ func build_settings_ui() -> void:
 		instance.setting = setting
 
 
+func has_modified_settings() -> bool:
+	for child: SettingLine in column.get_children():
+		if child.is_modified():
+			return true
+	return false
+
 func save() -> void:
 	for child: SettingLine in column.get_children():
 		child.save()

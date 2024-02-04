@@ -11,11 +11,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cvge"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_xb3xy"]
-color = Color(0.635294, 0.635294, 0.635294, 1)
-grow_begin = -5.0
-grow_end = -5.0
-thickness = 5
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxhoh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0tq4"]
 texture = ExtResource("2_yhp1k")
@@ -33,7 +29,7 @@ Button/styles/disabled = SubResource("StyleBoxEmpty_ndwxm")
 Button/styles/focus = SubResource("StyleBoxEmpty_rqt4n")
 Button/styles/hover = SubResource("StyleBoxEmpty_3v54b")
 Button/styles/normal = SubResource("StyleBoxEmpty_3cvge")
-Button/styles/pressed = SubResource("StyleBoxLine_xb3xy")
+Button/styles/pressed = SubResource("StyleBoxEmpty_jxhoh")
 GridContainer/constants/h_separation = 2
 GridContainer/constants/v_separation = 2
 Label/fonts/font = ExtResource("1_tttqy")

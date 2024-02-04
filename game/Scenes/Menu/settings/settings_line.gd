@@ -2,7 +2,7 @@ extends HBoxContainer
 class_name SettingLine
 
 var lbl: Label
-var checkbox: CheckBox
+var checkbox: CheckButton
 var slider: Slider
 var options: OptionButton
 
@@ -49,8 +49,9 @@ func build() -> void:
 
 
 func build_bool() -> void:
-	checkbox = CheckBox.new()
-	checkbox.button_pressed = setting.value
+	checkbox = CheckButton.new()
+	checkbox.toggle_mode = true
+	checkbox.set_pressed_no_signal(setting.value)
 	checkbox.mouse_exited.connect(_on_mouse_exited)
 	container.add_child(checkbox)
 
@@ -64,6 +65,7 @@ func build_range() -> void:
 	container.add_child(slider)
 	container.add_child(lbl)
 	slider.tick_count = 5
+	slider.ticks_on_borders = true
 	slider.min_value = setting.min_value
 	slider.max_value = setting.max_value
 	slider.step = setting.step
@@ -76,11 +78,15 @@ func _on_slider_value_changed(value: float) -> void:
 
 func build_options() -> void:
 	options = OptionButton.new()
-	for option in setting.possible_values:
-		if option is String:
-			options.add_item(option)
-		elif option is int or option is float:
-			options.add_item(String.num(option))
+	if setting.possible_values_strings.is_empty():
+		for option in setting.possible_values:
+			if option is String:
+				options.add_item(option)
+			elif option is int or option is float:
+				options.add_item(String.num(option))
+	else:
+		for option_string in setting.possible_values_strings:
+			options.add_item(option_string)
 	var value_index = setting.possible_values.find(setting.value)
 	options.select(value_index)
 	options.alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -88,6 +94,15 @@ func build_options() -> void:
 	options.mouse_exited.connect(_on_mouse_exited)
 	container.add_child(options)
 
+
+func is_modified() -> bool:
+	if setting.type == setting.SETTING_TYPE.BOOLEAN:
+		return setting.value != checkbox.button_pressed
+	elif setting.type == setting.SETTING_TYPE.RANGE:
+		return setting.value != slider.value
+	elif setting.type == setting.SETTING_TYPE.OPTIONS:
+		return setting.value != setting.possible_values[options.get_selected_id()]
+	return true
 
 func save() -> void:
 	if setting.type == setting.SETTING_TYPE.BOOLEAN:

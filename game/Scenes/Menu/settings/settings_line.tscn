@@ -18,7 +18,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 
-[node name="Control2" type="HSeparator" parent="NameContainer"]
+[node name="Control2" type="Control" parent="NameContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -26,6 +26,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Control" type="HSeparator" parent="Container"]
+[node name="Control" type="Control" parent="Container"]
 layout_mode = 2
 size_flags_horizontal = 3
