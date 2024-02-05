@@ -64,7 +64,7 @@ content_scale_stretch = 1
 [node name="QuitDialog" type="ConfirmationDialog" parent="."]
 title = "You have unsaved settings !"
 initial_position = 2
-size = Vector2i(300, 67)
+size = Vector2i(300, 80)
 unresizable = true
 popup_window = true
 min_size = Vector2i(300, 30)

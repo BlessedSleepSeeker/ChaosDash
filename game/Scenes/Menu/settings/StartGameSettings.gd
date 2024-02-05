@@ -1,24 +1,42 @@
-extends CenterContainer
+extends Control
 
-@export var game_scene_path := "res://scenes/game_world/World.tscn"
+@export var game_scene := preload("res://scenes/game_world/World.tscn")
 @export var menu_scene := preload("res://scenes/Menu/MainMenu.tscn")
 @export var action_assignement_panel_scene := preload("res://scenes/Menu/settings/actions_assignement_panel.tscn")
 
 @export var MAX_PLAYER: int = 8
 
-@onready var lbl: Label = $MC/VB/HB/PlayerNbr
-@onready var assignement_park = $AssignementPark
+@onready var lbl: Label = $MC/C/VB/C3/PlayerNbr
+@onready var assignement_park = $MC/C/AssignementPark
+@onready var pdisplay = $PlayerDisplay
+@onready var up_button: TextureButton = $MC/C/VB/C1/UpButton
+@onready var down_button: TextureButton = $MC/C/VB/C2/DownButton
+
+signal transition(new_scene: PackedScene, with_animation: bool)
 
 const lblTxt: String = "%d Player(s)"
 
-@export var player_count = 2:
+@export var player_count = 1:
 	set(val):
 		if val > 0 and val <= MAX_PLAYER:
 			player_count = val
 			lbl.text = lblTxt % player_count
+			play_player_anim()
 
 func _ready():
-	player_count = 2
+	player_count = 1
+
+func play_player_anim():
+	var i := 1
+	for p: AnimatedSprite2D in pdisplay.get_children():
+		if i <= player_count:
+			if p.state == 'NotPresent' or p.state == "Dying":
+				p.state = 'Spawning'
+		else:
+			if p.state == "Idling" or p.state == "Spawning":
+				p.state = "Dying"
+		p.animate()
+		i += 1
 
 func _on_up_button_pressed():
 	player_count += 1
@@ -33,6 +51,7 @@ func set_missing_players_actions() -> bool:
 		instance.action_set.connect(missing_action_loop)
 		add_child(instance)
 		instance.action_name = missing_action
+		#instance.global_position = assignement_park.global_position
 		return false
 	else:
 		return true
@@ -43,12 +62,9 @@ func missing_action_loop():
 		startGame()
 
 
-
 func startGame() -> void:
-	var game_scene = load(game_scene_path).instantiate()
-	game_scene.player_count = player_count
-	get_tree().root.add_child(game_scene)
-	queue_free()
+	transition.emit(game_scene, true)
+
 
 func _on_button_pressed():
 	InputHandler.load_players_actions_from_file(player_count)
@@ -56,4 +72,12 @@ func _on_button_pressed():
 
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_packed(menu_scene)
+	transition.emit(menu_scene, true)
+
+
+func _on_up_button_mouse_exited():
+	up_button.release_focus()
+
+
+func _on_down_button_mouse_exited():
+	down_button.release_focus()

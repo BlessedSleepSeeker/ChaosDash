@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg2lu8hd15uey"]
+
+[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_w75b5"]
+[ext_resource type="Texture2D" uid="uid://dgrh76vm86fey" path="res://Assets/TitleScreen/title.png" id="2_oqur8"]
+
+[node name="MainMenuBg" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_w75b5")
+texture = ExtResource("2_oqur8")

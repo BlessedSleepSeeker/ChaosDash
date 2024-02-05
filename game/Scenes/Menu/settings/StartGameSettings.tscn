@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bw4choumxblbr"]
+[gd_scene load_steps=13 format=3 uid="uid://bw4choumxblbr"]
 
-[ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="1_p35oj"]
+[ext_resource type="Theme" uid="uid://c2l5kustcjttd" path="res://Assets/SettingsTheme.tres" id="1_ej72a"]
+[ext_resource type="Texture2D" uid="uid://cio31p8oi61jb" path="res://Assets/TitleScreen/titlevariant/selectplayer1.png" id="2_1jhbp"]
 [ext_resource type="Script" path="res://scenes/Menu/settings/StartGameSettings.gd" id="2_bit4h"]
-[ext_resource type="Texture2D" uid="uid://dgrh76vm86fey" path="res://Assets/TitleScreen/title.png" id="2_pyyso"]
 [ext_resource type="Texture2D" uid="uid://ckwro78vd0ov0" path="res://Assets/Player/lapingue.png" id="3_5ot2n"]
+[ext_resource type="Texture2D" uid="uid://dw5ptt006ofid" path="res://Assets/UI/button/focusedDeco.png" id="5_jct2p"]
+[ext_resource type="PackedScene" uid="uid://bac3a1f4eskx4" path="res://scenes/Menu/settings/PlayerAnimations/animated_player_sprite.tscn" id="5_ulcr2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xnrq"]
 atlas = ExtResource("3_5ot2n")
@@ -29,69 +31,129 @@ region = Rect2(144, 0, 16, 22)
 atlas = ExtResource("3_5ot2n")
 region = Rect2(128, 0, 16, 22)
 
-[node name="StartGameSettings" type="CenterContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_p35oj")
+[node name="StartGameSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+theme = ExtResource("1_ej72a")
 script = ExtResource("2_bit4h")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("2_pyyso")
-
-[node name="AssignementPark" type="Control" parent="."]
-layout_mode = 2
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_1jhbp")
 
 [node name="MC" type="MarginContainer" parent="."]
-layout_mode = 2
-theme_override_constants/margin_top = 40
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -67.5
+offset_right = 67.5
+offset_bottom = 169.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 70
 
-[node name="VB" type="VBoxContainer" parent="MC"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MC/VB"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="MC/VB/MarginContainer"]
-layout_mode = 2
-text = "I am ready"
-
-[node name="CenterContainer" type="CenterContainer" parent="MC/VB"]
+[node name="C" type="CenterContainer" parent="MC"]
 layout_mode = 2
 
-[node name="UpButton" type="TextureButton" parent="MC/VB/CenterContainer"]
+[node name="VB" type="VBoxContainer" parent="MC/C"]
 layout_mode = 2
+
+[node name="C1" type="CenterContainer" parent="MC/C/VB"]
+layout_mode = 2
+
+[node name="UpButton" type="TextureButton" parent="MC/C/VB/C1"]
+layout_mode = 2
+tooltip_text = "Add a player"
+focus_neighbor_top = NodePath("../../HB/MC/ReadyButton")
 texture_normal = SubResource("AtlasTexture_4xnrq")
 texture_pressed = SubResource("AtlasTexture_3rkma")
 texture_hover = SubResource("AtlasTexture_r4cun")
+texture_focused = ExtResource("5_jct2p")
 
-[node name="HB" type="CenterContainer" parent="MC/VB"]
+[node name="C3" type="CenterContainer" parent="MC/C/VB"]
 layout_mode = 2
 
-[node name="PlayerNbr" type="Label" parent="MC/VB/HB"]
+[node name="PlayerNbr" type="Label" parent="MC/C/VB/C3"]
 layout_mode = 2
 text = "Player(s)"
 
-[node name="CenterContainer2" type="CenterContainer" parent="MC/VB"]
+[node name="C2" type="CenterContainer" parent="MC/C/VB"]
 layout_mode = 2
 
-[node name="DownButton" type="TextureButton" parent="MC/VB/CenterContainer2"]
+[node name="DownButton" type="TextureButton" parent="MC/C/VB/C2"]
 layout_mode = 2
+tooltip_text = "Remove a player"
+focus_neighbor_bottom = NodePath("../../HB/MC/ReadyButton")
 texture_normal = SubResource("AtlasTexture_0scvy")
 texture_pressed = SubResource("AtlasTexture_syxc4")
 texture_hover = SubResource("AtlasTexture_y6ojo")
+texture_focused = ExtResource("5_jct2p")
 
-[node name="MCon" type="MarginContainer" parent="MC/VB"]
+[node name="HB" type="HBoxContainer" parent="MC/C/VB"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="MC/VB/MCon"]
+[node name="MCon" type="MarginContainer" parent="MC/C/VB/HB"]
 layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MC/C/VB/HB/MCon"]
+layout_mode = 2
+focus_neighbor_right = NodePath("../../MC/ReadyButton")
+focus_neighbor_bottom = NodePath("../../../C1/UpButton")
 text = "Nevermind"
 
-[connection signal="pressed" from="MC/VB/MarginContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MC/VB/CenterContainer/UpButton" to="." method="_on_up_button_pressed"]
-[connection signal="pressed" from="MC/VB/CenterContainer2/DownButton" to="." method="_on_down_button_pressed"]
-[connection signal="pressed" from="MC/VB/MCon/BackButton" to="." method="_on_back_button_pressed"]
+[node name="MC" type="MarginContainer" parent="MC/C/VB/HB"]
+layout_mode = 2
+
+[node name="ReadyButton" type="Button" parent="MC/C/VB/HB/MC"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../MCon/BackButton")
+focus_neighbor_bottom = NodePath("../../../C1/UpButton")
+text = "Ready !"
+
+[node name="AssignementPark" type="Control" parent="MC/C"]
+layout_mode = 2
+
+[node name="PlayerDisplay" type="Node2D" parent="."]
+
+[node name="P1" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(104, 277)
+player_nbr = 1
+
+[node name="P2" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(249, 277)
+player_nbr = 2
+
+[node name="P3" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(392, 277)
+player_nbr = 3
+
+[node name="P4" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(536, 277)
+player_nbr = 4
+
+[node name="P5" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(152, 293)
+player_nbr = 5
+
+[node name="P6" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(296, 293)
+player_nbr = 6
+
+[node name="P7" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(440, 293)
+player_nbr = 7
+
+[node name="P8" parent="PlayerDisplay" instance=ExtResource("5_ulcr2")]
+position = Vector2(584, 293)
+player_nbr = 8
+
+[connection signal="mouse_exited" from="MC/C/VB/C1/UpButton" to="." method="_on_up_button_mouse_exited"]
+[connection signal="pressed" from="MC/C/VB/C1/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="mouse_exited" from="MC/C/VB/C2/DownButton" to="." method="_on_down_button_mouse_exited"]
+[connection signal="pressed" from="MC/C/VB/C2/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="MC/C/VB/HB/MCon/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MC/C/VB/HB/MC/ReadyButton" to="." method="_on_button_pressed"]

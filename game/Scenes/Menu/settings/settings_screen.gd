@@ -10,7 +10,7 @@ extends Control
 @onready var save_dialog: ConfirmationDialog = $SaveDialog
 @onready var quit_dialog: ConfirmationDialog = $QuitDialog
 
-signal transition(new_scene: PackedScene)
+signal transition(new_scene: PackedScene, with_animation: bool)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,7 +32,7 @@ func _on_quit_button_pressed():
 			quit_dialog.show()
 			b = true
 	if not b:
-		transition.emit(back_scene)
+		transition.emit(back_scene, true)
 	
 
 func _on_save_button_pressed():
@@ -47,4 +47,4 @@ func _on_save_confirmed():
 
 
 func _on_quit_confirmed():
-	transition.emit(back_scene)
+	transition.emit(back_scene, true)
