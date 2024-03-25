@@ -21,6 +21,7 @@ config/icon="res://Assets/Player/portraitNeutral.png"
 [autoload]
 
 InputHandler="*res://autoloads/inputhandler.gd"
+GlobalVars="*res://autoloads/global_vars.gd"
 
 [display]
 

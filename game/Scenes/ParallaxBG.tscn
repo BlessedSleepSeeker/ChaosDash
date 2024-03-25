@@ -6,7 +6,7 @@
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
 [node name="SkyParallax" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.1, 1)
+motion_scale = Vector2(0.1, 0.3)
 motion_mirroring = Vector2(640, 480)
 
 [node name="Sprite2D" type="Sprite2D" parent="SkyParallax"]
@@ -15,7 +15,7 @@ centered = false
 offset = Vector2(0, 50)
 
 [node name="MoutainParallax" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(0.3, 1)
+motion_scale = Vector2(0.3, 0.7)
 motion_mirroring = Vector2(640, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="MoutainParallax"]

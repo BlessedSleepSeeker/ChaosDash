@@ -9,6 +9,10 @@ extends Node
 
 @export var difficulty: int = 0
 @export var player_count: int = 0
+#	set(val):
+#		flush_players_and_viewport()
+#		setup()
+		
 
 @onready var players: Array = []
 var levelHandler: LevelHandler
@@ -17,6 +21,14 @@ var levelTransition: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# ensure that modifying the player nbr in the scene still work.
+	if player_count == 0:
+		print_debug(GlobalVars.PLAYER_COUNT)
+		player_count = GlobalVars.PLAYER_COUNT
+	setup()
+
+func setup():
+	print_debug(player_count)
 
 	# Add a columns for player 3, 5, 7 and so on..
 	splitGrid.columns = (player_count / 2) + player_count % 2
@@ -34,12 +46,17 @@ func _ready():
 			playerViewport.set_world(levelHandlerWorld)
 		playerViewport.set_player_nbr(i + 1)
 		players.append(playerViewport.get_player())
-	connectToLvlHandler()
-	createPlayersActions()
+	if player_count > 0:
+		connectToLvlHandler()
 	setUpLevel(difficulty)
 
-func createPlayersActions() -> void:
-	pass
+
+func flush_players_and_viewport() -> void:
+	players = []
+	for n in splitGrid.get_children():
+		splitGrid.remove_child(n)
+		n.queue_free()
+
 
 func connectToLvlHandler() -> void:
 	levelHandler.level_finished.connect(_on_level_finished)
@@ -67,10 +84,6 @@ func _on_level_finished(_body: Node2D):
 		self.difficulty += 1
 
 func _on_level_started():
-	pass
-
-
-func setup():
 	pass
 
 func setPlayerToStart() -> void:

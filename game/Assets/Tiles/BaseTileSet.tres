@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=33 format=3 uid="uid://jt4cxulirnw"]
 
-[ext_resource type="Texture2D" uid="uid://b12ftvque6npt" path="res://Assets/Tiles/tileset.png" id="1_hillv"]
 [ext_resource type="PackedScene" uid="uid://fpggvqe00l0x" path="res://scenes/game_world/TileSetScenes/CheckPoint.tscn" id="1_q5jas"]
 [ext_resource type="PackedScene" uid="uid://cvykatj06q3o7" path="res://scenes/game_world/TileSetScenes/DeathZone.tscn" id="2_slwud"]
 [ext_resource type="PackedScene" uid="uid://ccfpg0wab2rxk" path="res://scenes/game_world/TileSetScenes/Goal.tscn" id="3_b4623"]
 [ext_resource type="PackedScene" uid="uid://bgmgua53b2s3b" path="res://scenes/game_world/TileSetScenes/StartPoint.tscn" id="4_diu7f"]
+[ext_resource type="Texture2D" uid="uid://j6b5lrluvt1l" path="res://Assets/Tiles/world.png" id="5_3msqj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8n354"]
 
@@ -88,7 +88,7 @@ polygon = PackedVector2Array(-8, -8, 6, -8, 6, -7, 7, -7, 7, -6, 8, -6, 8, 6, 7,
 polygon = PackedVector2Array(-6, -8, 6, -8, 6, -7, 7, -7, 7, -6, 8, -6, 8, 6, 7, 6, 7, 7, 6, 7, 6, 8, -6, 8, -6, 7, -7, 7, -7, 6, -8, 6, -8, -6, -7, -6, -7, -7, -6, -7)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n8qqh"]
-texture = ExtResource("1_hillv")
+texture = ExtResource("5_3msqj")
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_o0r3c")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -238,6 +238,39 @@ texture = ExtResource("1_hillv")
 9:2/0 = 0
 9:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:2/0/physics_layer_0/angular_velocity = 0.0
+6:3/0 = 0
+6:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:3/0/physics_layer_0/angular_velocity = 0.0
+7:3/0 = 0
+7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:3/0/physics_layer_0/angular_velocity = 0.0
+8:3/0 = 0
+8:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:3/0/physics_layer_0/angular_velocity = 0.0
+8:2/0 = 0
+8:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:2/0/physics_layer_0/angular_velocity = 0.0
+10:1/0 = 0
+10:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+10:1/0/physics_layer_0/angular_velocity = 0.0
+11:1/0 = 0
+11:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:1/0/physics_layer_0/angular_velocity = 0.0
+12:1/0 = 0
+12:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:1/0/physics_layer_0/angular_velocity = 0.0
+13:1/0 = 0
+13:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+13:1/0/physics_layer_0/angular_velocity = 0.0
+13:0/0 = 0
+13:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+13:0/0/physics_layer_0/angular_velocity = 0.0
+12:0/0 = 0
+12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+12:0/0/physics_layer_0/angular_velocity = 0.0
+11:0/0 = 0
+11:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+11:0/0/physics_layer_0/angular_velocity = 0.0
 
 [resource]
 occlusion_layer_0/light_mask = 1

@@ -4,7 +4,7 @@ extends Control
 @export var gameSettingPath := "res://scenes/Menu/settings/StartGameSettings.tscn"
 @export var settings_screen_path := "res://scenes/Menu/settings/settings_screen.tscn"
 
-signal transition(new_scene: PackedScene, with_animation: bool)
+signal transition(new_scene: PackedScene, animation: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,12 +15,12 @@ func _on_quit_button_pressed():
 
 func _on_credits_button_pressed():
 	var creditsScene = load(creditsScenePath)
-	transition.emit(creditsScene, true)
+	transition.emit(creditsScene, "scene_transition")
 
 func _on_play_button_pressed():
 	var gameScene = load(gameSettingPath)
-	transition.emit(gameScene, true)
+	transition.emit(gameScene, "scene_transition")
 
 func _on_settings_pressed():
 	var settings_scene = load(settings_screen_path)
-	transition.emit(settings_scene, true)
+	transition.emit(settings_scene, "scene_transition")

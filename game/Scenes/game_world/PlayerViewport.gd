@@ -3,7 +3,7 @@ extends SubViewportContainer
 
 @export var PLAYER_NBR: int = 2
 @export var player_scene = preload("res://scenes/Character/Player.tscn")
-@export var parallax_BG = preload("res://scenes/parallaxBG.tscn")
+@export var parallax_BG = preload("res://scenes/ParallaxBG.tscn")
 @onready var viewport: Viewport = $SubViewport
 
 @export var energy_texture_3: CompressedTexture2D = preload("res://Assets/Player/UI/LifeCounter3.png")

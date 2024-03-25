@@ -12,7 +12,7 @@ extends Control
 @onready var up_button: TextureButton = $MC/C/VB/C1/UpButton
 @onready var down_button: TextureButton = $MC/C/VB/C2/DownButton
 
-signal transition(new_scene: PackedScene, with_animation: bool)
+signal transition(new_scene: PackedScene, animation: String)
 
 const lblTxt: String = "%d Player(s)"
 
@@ -63,7 +63,9 @@ func missing_action_loop():
 
 
 func startGame() -> void:
-	transition.emit(game_scene, true)
+	# can't pass data between scene otherwise due to the new transition system.
+	GlobalVars.PLAYER_COUNT = player_count
+	transition.emit(game_scene, "scene_transition")
 
 
 func _on_button_pressed():
@@ -72,7 +74,7 @@ func _on_button_pressed():
 
 
 func _on_back_button_pressed():
-	transition.emit(menu_scene, true)
+	transition.emit(menu_scene, "scene_transition")
 
 
 func _on_up_button_mouse_exited():

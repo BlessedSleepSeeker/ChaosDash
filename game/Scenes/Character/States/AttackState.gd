@@ -4,10 +4,13 @@ extends PlayerState
 @export var projectile: PackedScene = preload("res://scenes/Character/Attack/BaseProj.tscn")
 var frame_count: int = 0
 
+@onready var sound_player: AudioStreamPlayer = $SoundPlayer
+
 func enter(_msg := {}) -> void:
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
 	player.animSprite.play("attack")
+	sound_player.play()
 	var instance = projectile.instantiate()
 	player.get_parent().add_child(instance)
 	#instance.setGravity(player.GRAVITY)
@@ -16,7 +19,7 @@ func enter(_msg := {}) -> void:
 		instance.transform = player.PROJO_SPAWNPOINT_L.global_transform
 	else:
 		instance.transform = player.PROJO_SPAWNPOINT_R.global_transform
-		
+
 
 func handle_input(_event: InputEvent) -> void:
 	player.v_direction = Input.get_axis(player.act_left, player.act_right)
@@ -30,7 +33,10 @@ func physics_update(_delta: float) -> void:
 	player.velocity.x = clampf(player.velocity.x, -player.MAX_GROUND_SPEED, player.MAX_GROUND_SPEED)
 	player.move_and_slide()
 	if frame_count > player.ATTACK_FRAME_DATA:
-		state_machine.transition_to("Idle")
+		if player.v_direction == 0:
+			state_machine.transition_to("Idle")
+		else:
+			state_machine.transition_to("Run")
 	frame_count += 1
 
 func exit() -> void:
