@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://clfvgf4p2ahqb"]
+[gd_scene load_steps=51 format=3 uid="uid://clfvgf4p2ahqb"]
 
 [ext_resource type="Script" path="res://scenes/Character/Player.gd" id="1_o10m3"]
 [ext_resource type="Script" path="res://scenes/Character/StateMachine.gd" id="3_fwbti"]
@@ -7,14 +7,19 @@
 [ext_resource type="Script" path="res://scenes/Character/States/RunState.gd" id="5_f0knl"]
 [ext_resource type="Script" path="res://scenes/Character/States/InAirState.gd" id="6_geb3k"]
 [ext_resource type="AudioStream" uid="uid://borgbohuxqio5" path="res://sounds/soundeffects/shortboop1.mp3" id="8_7587g"]
+[ext_resource type="Script" path="res://scenes/Sound/RandomStreamPlayer.gd" id="8_lp1in"]
 [ext_resource type="Script" path="res://scenes/Character/States/AttackState.gd" id="8_m2bxs"]
 [ext_resource type="Script" path="res://scenes/Character/States/FreeFallState.gd" id="8_r2jyq"]
 [ext_resource type="Texture2D" uid="uid://ckwro78vd0ov0" path="res://Assets/Player/lapingue.png" id="8_wfdbv"]
 [ext_resource type="Script" path="res://scenes/Character/States/StunState.gd" id="9_iqosp"]
 [ext_resource type="Script" path="res://scenes/Character/States/DeathState.gd" id="10_ogyie"]
+[ext_resource type="AudioStream" uid="uid://cunptchtyvbrm" path="res://sounds/soundeffects/shortboop2.mp3" id="10_sdwul"]
 [ext_resource type="Script" path="res://scenes/Character/States/ParadeState.gd" id="11_csikm"]
+[ext_resource type="AudioStream" uid="uid://b5y2jge5u8yxy" path="res://sounds/soundeffects/shortboop3.mp3" id="11_jhxvt"]
 [ext_resource type="Script" path="res://scenes/Character/States/WaitState.gd" id="12_4cexp"]
+[ext_resource type="AudioStream" uid="uid://btcjgglu3py2f" path="res://sounds/soundeffects/shortboop4.mp3" id="12_grykv"]
 [ext_resource type="Script" path="res://scenes/Character/States/OutOfGameState.gd" id="13_m3e87"]
+[ext_resource type="AudioStream" uid="uid://cvfcny1p2dpb2" path="res://sounds/soundeffects/shortboop5.mp3" id="13_w4gpw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoryc"]
 size = Vector2(12, 15)
@@ -306,9 +311,9 @@ script = ExtResource("6_geb3k")
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("8_m2bxs")
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="StateMachine/Attack"]
-stream = ExtResource("8_7587g")
-bus = &"Sound Effect"
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="StateMachine/Attack"]
+script = ExtResource("8_lp1in")
+streams = Array[AudioStream]([ExtResource("8_7587g"), ExtResource("10_sdwul"), ExtResource("11_jhxvt"), ExtResource("12_grykv"), ExtResource("13_w4gpw")])
 
 [node name="FreeFall" type="Node" parent="StateMachine"]
 script = ExtResource("8_r2jyq")
@@ -318,6 +323,9 @@ script = ExtResource("9_iqosp")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("10_ogyie")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/Death"]
+bus = &"Sound Effect"
 
 [node name="Parade" type="Node" parent="StateMachine"]
 script = ExtResource("11_csikm")

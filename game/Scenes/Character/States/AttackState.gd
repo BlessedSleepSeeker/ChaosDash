@@ -4,13 +4,13 @@ extends PlayerState
 @export var projectile: PackedScene = preload("res://scenes/Character/Attack/BaseProj.tscn")
 var frame_count: int = 0
 
-@onready var sound_player: AudioStreamPlayer = $SoundPlayer
+@onready var sound_player: RandomStreamPlayer = $AudioPlayer
 
 func enter(_msg := {}) -> void:
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
 	player.animSprite.play("attack")
-	sound_player.play()
+	sound_player.play_random()
 	var instance = projectile.instantiate()
 	player.get_parent().add_child(instance)
 	#instance.setGravity(player.GRAVITY)
