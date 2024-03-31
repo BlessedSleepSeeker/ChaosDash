@@ -7,26 +7,35 @@ extends CharacterBody2D
 @onready var state_machine = $StateMachine
 @onready var hitbox = $Hitbox
 
-@export var PLAYER_NBR: int = 1
+@export var PLAYER_NBR: int = 1 ##Variable to handle control and color.
 
 #movement physics
+@export_group("Physics Variables")
 @export var GRAVITY: int = 20
-@export var JUMP_IMPULSE: float = -200
+@export var JUMPSQUAT: int = 5
+@export var SHORTHOP_IMPULSE: float = -250
+@export var FULLHOP_IMPULSE: float = -400
 @export var MAX_JUMP_HOLD_FRAMES: int = 4
 @export var MAX_FALL_SPEED: int = 200
 @export var MAX_FASTFALL_SPEED: int = 350
-@export var MAX_GROUND_SPEED: int = 125
-@export var MAX_AIR_SPEED: int = 100
-@export var ACCEL: int = 10
-@export var FRICTION: float = 0.92
-@export var AIR_DRIFT: int = 10
-@export var JUMPSQUAT: int = 3
 
+@export var GROUND_ACCEL: int = 10
+@export_range(0, 1, 0.01) var GROUND_FRICTION: float = 0.8
+@export var MAX_GROUND_SPEED: int = 125
+
+@export var AIR_ACCEL: int = 4
+@export_range(0, 1, 0.01) var AIR_DRIFT: float = 0.98
+@export var MAX_AIR_SPEED: int = 100
+
+@export_group("Combat Variables")
 @export var ATTACK_FRAME_DATA: int = 20
 @export var ATTACK_COOLDOWN: int = 80
 @export var ATTACK_AIR_IASA: int = 8
 @export var STUN_DURATION: int = 30
 @export var GRACE_PERIOD: int = 60
+
+var frame_count_grace: int = 0
+var last_spawnpoint: Vector2 = Vector2.ZERO
 
 signal respawning(life: int)
 signal stock_updated(stock: int)
@@ -36,13 +45,13 @@ var stock: int = MAX_STOCK:
 		stock = val
 		stock_updated.emit(stock)
 
+signal health_updated(life: int)
 @export var MAX_LIFE: int = 3
 var life: int = MAX_LIFE:
 	set(val):
 		life = val
 		health_updated.emit(life)
 
-signal health_updated(life: int)
 signal score_updated(p: Player, new_score: int, old_score: int)
 var SCORE: int = 0:
 	set(val):
@@ -50,14 +59,12 @@ var SCORE: int = 0:
 		score_updated.emit(self, val, SCORE)
 		SCORE = val
 
-var frame_count_grace: int = 0
-var last_spawnpoint: Vector2 = Vector2.ZERO
-
+@export_group("FreeCam State Variables")
 @export var FREECAM: bool = false
 @export var FREECAM_SPEED: int = 30
 
-# chaos modifier
-@export var CHAOS_HORIZONTAL_MODIFIER: int = 0
+@export_group("Chaos Modifiers")
+@export var CHAOS_HORIZONTAL_MODIFIER: float = 0.0
 
 #multiplayer controls
 @onready var act_left = "p%d_left" % PLAYER_NBR
@@ -106,18 +113,18 @@ func _physics_process(_delta):
 	if not FREECAM:
 		velocity.y += GRAVITY
 	if is_fastfalling:
-		velocity.y = clampf(velocity.y, JUMP_IMPULSE * MAX_JUMP_HOLD_FRAMES, MAX_FASTFALL_SPEED)
+		velocity.y = clampf(velocity.y, SHORTHOP_IMPULSE * MAX_JUMP_HOLD_FRAMES, MAX_FASTFALL_SPEED)
 	else:
-		velocity.y = clampf(velocity.y, JUMP_IMPULSE * MAX_JUMP_HOLD_FRAMES, MAX_FALL_SPEED)
+		velocity.y = clampf(velocity.y, SHORTHOP_IMPULSE * MAX_JUMP_HOLD_FRAMES, MAX_FALL_SPEED)
 	#print(velocity.y)
 
 func chaosGravity(newGrav: int):
 	GRAVITY -= newGrav
 
-func chaosFriction(newFric: float):
-	FRICTION -= newFric / 100
-	if FRICTION > 1:
-		FRICTION = 1
+func chaosGROUND_FRICTION(newFric: float):
+	GROUND_FRICTION -= newFric / 100
+	if GROUND_FRICTION > 1:
+		GROUND_FRICTION = 1
 
 func chaosChargedJump(new: int):
 	MAX_JUMP_HOLD_FRAMES += new
@@ -152,6 +159,7 @@ func death() -> int:
 	died.emit(stock)
 	return stock
 
+# Celebration, not parry
 func parade() -> void:
 	state_machine.transition_to("Parade")
 
@@ -178,3 +186,12 @@ signal _eliminated
 func eliminated() -> void:
 	state_machine.transition_to("OutOfGame")
 	_eliminated.emit()
+
+# # Helper function to streamline basic grounded movement physics
+# func calcHVelocityGrounded(current_velocity: float, input_dir: float = 0.0) -> float:
+# 	current_velocity += (input_dir * GROUND_FRICTION)
+# 	return clampf(current_velocity, -MAX_GROUND_SPEED, MAX_GROUND_SPEED) + CHAOS_HORIZONTAL_MODIFIER
+
+# # Helper function to streamline basic aerial movement physics
+# func calcHVelocityAir(x_velocity) -> float:
+# 	return clampf((x_velocity * AIR_DRIFT), -MAX_AIR_SPEED, MAX_AIR_SPEED) + CHAOS_HORIZONTAL_MODIFIER

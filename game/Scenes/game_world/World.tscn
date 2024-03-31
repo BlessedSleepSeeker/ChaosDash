@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://crow5huq87jix"]
+[gd_scene load_steps=3 format=3 uid="uid://crow5huq87jix"]
 
 [ext_resource type="Script" path="res://scenes/game_world/WorldHandler.gd" id="1_gtwtk"]
 [ext_resource type="Theme" uid="uid://c1e08ke8dkqgy" path="res://Assets/MainTheme.tres" id="3_pebid"]
-[ext_resource type="PackedScene" uid="uid://b2a2hxpnisbot" path="res://scenes/game_world/ChaosModifiers/ChaosHandler.tscn" id="5_qmwld"]
 
 [node name="WorldRoot" type="Node"]
 script = ExtResource("1_gtwtk")
@@ -22,5 +21,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_pebid")
-
-[node name="ChaosHandler" parent="." instance=ExtResource("5_qmwld")]

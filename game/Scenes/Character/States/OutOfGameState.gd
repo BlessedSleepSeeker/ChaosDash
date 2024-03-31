@@ -15,8 +15,8 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	player.velocity.x = (player.velocity.x + freecam_dir.x * player.FREECAM_SPEED) * player.FRICTION
-	player.velocity.y = (player.velocity.y + freecam_dir.y * player.FREECAM_SPEED) * player.FRICTION
+	player.velocity.x = (player.velocity.x + freecam_dir.x * player.FREECAM_SPEED) * player.GROUND_FRICTION
+	player.velocity.y = (player.velocity.y + freecam_dir.y * player.FREECAM_SPEED) * player.GROUND_FRICTION
 	player.move_and_slide()
 
 func exit() -> void:

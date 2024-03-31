@@ -15,7 +15,10 @@ func update(_delta: float) -> void:
 
 func jump():
 	player.is_jumping = true
-	player.velocity.y += player.JUMP_IMPULSE
+	if Input.is_action_pressed(player.act_up):
+		player.velocity.y += player.FULLHOP_IMPULSE
+	else:
+		player.velocity.y += player.SHORTHOP_IMPULSE
 	frame_count = 0
 	state_machine.transition_to("InAir")
 

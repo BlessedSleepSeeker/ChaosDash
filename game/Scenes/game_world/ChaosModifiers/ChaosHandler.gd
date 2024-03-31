@@ -47,7 +47,7 @@ func applyChaos(chaos: int) -> void:
 			worldHandler.callPlayersFunc("chaosGravity", chaosPower)
 			chaosName = "You feel %s" % ("heavier" if chaosPower <= 0 else "lighter")
 		1:
-			worldHandler.callPlayersFunc("chaosFriction", chaosPower)
+			worldHandler.callPlayersFunc("chaosGROUND_FRICTION", chaosPower)
 			chaosName = "Tokyo Drifting" if chaosPower <= 0 else "No Drift Allowed"
 		2:
 			worldHandler.callPlayersFunc("chaosWind", chaosPower / 3)

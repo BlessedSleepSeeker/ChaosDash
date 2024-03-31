@@ -5,7 +5,7 @@ extends Node
 @export var levelHandlerScene = preload("res://scenes/game_world/LevelHandler.tscn")
 
 @onready var splitGrid: GridContainer = $SplitGrid
-@onready var chaosHandler: ChaosHandler = $ChaosHandler
+#@onready var chaosHandler: ChaosHandler = $ChaosHandler
 
 @export var difficulty: int = 0
 @export var player_count: int = 0

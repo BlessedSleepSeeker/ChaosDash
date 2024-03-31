@@ -77,9 +77,6 @@ _data = {
 
 [node name="ChaosHandler" type="Node"]
 script = ExtResource("1_d8fbc")
-chaosDescStr = null
-FIRST_CHAOS_TIMER = null
-CHAOS_COOLDOWN = null
 
 [node name="M" type="MarginContainer" parent="."]
 anchors_preset = 15

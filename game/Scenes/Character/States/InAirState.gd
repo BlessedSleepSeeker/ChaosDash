@@ -28,9 +28,11 @@ func physics_update(_delta: float) -> void:
 	#print(boost_jump)
 	#print(player.is_jumping)
 	#print(frame_count)
-	if boost_jump and player.is_jumping and frame_count < player.MAX_JUMP_HOLD_FRAMES and frame_count % 2 == 1:
-		player.velocity.y += player.JUMP_IMPULSE / frame_count
-	player.velocity.x += player.v_direction * (player.AIR_DRIFT)
+	#if boost_jump and player.is_jumping and frame_count < player.MAX_JUMP_HOLD_FRAMES and frame_count % 2 == 1:
+#		player.velocity.y += player.SHORTHOP_IMPULSE / frame_count
+	# First, apply player input.
+	player.velocity.x += (player.v_direction * player.AIR_ACCEL)
+	player.velocity.x *= player.AIR_DRIFT
 	player.velocity.x = clampf(player.velocity.x, -player.MAX_AIR_SPEED, player.MAX_AIR_SPEED) + player.CHAOS_HORIZONTAL_MODIFIER
 	if player.velocity.y > 0:
 		player.animSprite.play("fall")
