@@ -34,7 +34,8 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://autoloads/": "green",
 "res://scenes/": "yellow",
-"res://scenes/game_world/": "red"
+"res://scenes/game_world/": "red",
+"res://sounds/": "purple"
 }
 
 [layer_names]

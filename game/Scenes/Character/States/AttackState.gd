@@ -7,6 +7,7 @@ var frame_count: int = 0
 @onready var sound_player: RandomStreamPlayer = $AudioPlayer
 
 func enter(_msg := {}) -> void:
+	frame_count = 0
 	if _msg.has("cutscene"):
 		state_machine.transition_to("Cutscene")
 	player.animSprite.play("attack")

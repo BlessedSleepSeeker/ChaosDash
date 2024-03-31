@@ -1,10 +1,8 @@
 extends PlayerState
 
 var frame_count: int = 0
-var boost_jump: bool = true
 
 func enter(_msg := {}) -> void:
-	boost_jump = true
 	player.is_fastfalling = false
 	frame_count = 0
 	if _msg.has("cutscene"):
@@ -14,30 +12,29 @@ func enter(_msg := {}) -> void:
 
 func handle_input(_event: InputEvent) -> void:
 	player.v_direction = Input.get_axis(player.act_left, player.act_right)
-	if Input.is_action_just_released(player.act_up):
-		boost_jump = false
 	if Input.is_action_just_pressed(player.act_down) and player.velocity.y > 0:
 		player.is_fastfalling = true
 	if Input.is_action_just_pressed(player.act_attack):
 		state_machine.transition_to("Attack")
+	if Input.is_action_just_pressed(player.act_up) and player.airdash_done < player.MAX_AIR_DASH:
+		player.airdash_done += 1
+		state_machine.transition_to("AirDash")
 
 func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	#print(boost_jump)
-	#print(player.is_jumping)
-	#print(frame_count)
-	#if boost_jump and player.is_jumping and frame_count < player.MAX_JUMP_HOLD_FRAMES and frame_count % 2 == 1:
-#		player.velocity.y += player.SHORTHOP_IMPULSE / frame_count
-	# First, apply player input.
+	# First, apply player input, multiplied by the air accel.
 	player.velocity.x += (player.v_direction * player.AIR_ACCEL)
+	# Then, we apply the drift, or air friction : try to go back to 0
 	player.velocity.x *= player.AIR_DRIFT
+	# Clamp it to min/max speed and add the chaos mod.
 	player.velocity.x = clampf(player.velocity.x, -player.MAX_AIR_SPEED, player.MAX_AIR_SPEED) + player.CHAOS_HORIZONTAL_MODIFIER
 	if player.velocity.y > 0:
 		player.animSprite.play("fall")
 	player.move_and_slide()
 	if player.is_on_floor():
+		player.airdash_done = 0
 		if player.v_direction != 0:
 			state_machine.transition_to("Run")
 		else:

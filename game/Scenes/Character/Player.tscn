@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://clfvgf4p2ahqb"]
+[gd_scene load_steps=53 format=3 uid="uid://clfvgf4p2ahqb"]
 
 [ext_resource type="Script" path="res://scenes/Character/Player.gd" id="1_o10m3"]
 [ext_resource type="Script" path="res://scenes/Character/StateMachine.gd" id="3_fwbti"]
@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://btcjgglu3py2f" path="res://sounds/soundeffects/shortboop4.mp3" id="12_grykv"]
 [ext_resource type="Script" path="res://scenes/Character/States/OutOfGameState.gd" id="13_m3e87"]
 [ext_resource type="AudioStream" uid="uid://cvfcny1p2dpb2" path="res://sounds/soundeffects/shortboop5.mp3" id="13_w4gpw"]
+[ext_resource type="Script" path="res://scenes/Character/States/AirDashState.gd" id="20_5n8gw"]
+[ext_resource type="AudioStream" uid="uid://d0mywwc16twp2" path="res://sounds/soundeffects/doubleboop.mp3" id="21_wqww5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoryc"]
 size = Vector2(12, 15)
@@ -287,6 +289,7 @@ position = Vector2(0, -9)
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_o10m3")
+MAX_AIR_DASH = 2
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -335,6 +338,13 @@ script = ExtResource("12_4cexp")
 
 [node name="OutOfGame" type="Node" parent="StateMachine"]
 script = ExtResource("13_m3e87")
+
+[node name="AirDash" type="Node" parent="StateMachine"]
+script = ExtResource("20_5n8gw")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="StateMachine/AirDash"]
+stream = ExtResource("21_wqww5")
+bus = &"Sound Effect"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 16.0
