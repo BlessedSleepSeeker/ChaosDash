@@ -28,6 +28,7 @@ GlobalVars="*res://autoloads/global_vars.gd"
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [file_customization]
 
@@ -35,6 +36,7 @@ folder_colors={
 "res://autoloads/": "green",
 "res://scenes/": "yellow",
 "res://scenes/game_world/": "red",
+"res://shaders/": "gray",
 "res://sounds/": "purple"
 }
 
@@ -50,3 +52,4 @@ folder_colors={
 textures/canvas_textures/default_texture_filter=0
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+2d/stretch/scale_mode="fractional"

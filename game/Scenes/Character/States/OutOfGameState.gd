@@ -3,7 +3,7 @@ extends PlayerState
 var freecam_dir = Vector2.ZERO
 
 func enter(_msg := {}) -> void:
-	player.FREECAM = true
+	player.AFFECTED_BY_GRAVITY = true
 	player.hitbox.set_deferred("disabled", true)
 	player.animSprite.play("outofgame")
 	player.velocity = Vector2.ZERO
@@ -20,5 +20,5 @@ func physics_update(_delta: float) -> void:
 	player.move_and_slide()
 
 func exit() -> void:
-	player.FREECAM = false
+	player.AFFECTED_BY_GRAVITY = false
 	player.hitbox.set_deferred("disabled", false)

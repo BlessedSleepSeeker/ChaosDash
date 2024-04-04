@@ -6,12 +6,13 @@ var frame_count: int = 0
 var air_dash_dir: int = 1
 
 func enter(_msg := {}) -> void:
+	player.AFFECTED_BY_GRAVITY = false
 	frame_count = 0
 	player.velocity.y = 0
-	if player.v_direction >= 0:
-		air_dash_dir = 1
-	else:
+	if player.animSprite.flip_h:
 		air_dash_dir = -1
+	else:
+		air_dash_dir = 1
 	#player.animSprite.play("AirDash")
 	sound_player.play()
 
@@ -32,4 +33,5 @@ func physics_update(_delta: float) -> void:
 
 
 func exit() -> void:
+	player.AFFECTED_BY_GRAVITY = true
 	frame_count = 0

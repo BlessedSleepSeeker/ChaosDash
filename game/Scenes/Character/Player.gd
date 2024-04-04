@@ -6,12 +6,14 @@ extends CharacterBody2D
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var hitbox = $Hitbox
+@onready var animSprite: AnimatedSprite2D = $AnimSprite
 
-@export var PLAYER_NBR: int = 1 ##Variable to handle control and color.
+@export var PLAYER_NBR: int = 1 ## Variable to handle control and color.
 
 #movement physics
 @export_group("Physics Variables")
 @export var GRAVITY: int = 20
+@export var AFFECTED_BY_GRAVITY: bool = true
 @export var JUMPSQUAT: int = 5
 @export var SHORTHOP_IMPULSE: float = -250 ## Added to vertical velocity if the jump button is released before the end of jumpsquat.
 @export var FULLHOP_IMPULSE: float = -400 ## Added to vertical velocity if the jump button is still held at the end of jumpsquat.
@@ -64,7 +66,6 @@ var SCORE: int = 0:
 		SCORE = val
 
 @export_group("FreeCam State Variables")
-@export var FREECAM: bool = false
 @export var FREECAM_SPEED: int = 30
 
 @export_group("Chaos Modifiers")
@@ -76,8 +77,6 @@ var SCORE: int = 0:
 @onready var act_up = "p%d_up" % PLAYER_NBR
 @onready var act_down = "p%d_down" % PLAYER_NBR
 @onready var act_attack = "p%d_attack" % PLAYER_NBR
-
-@onready var animSprite: AnimatedSprite2D = $AnimSprite
 
 var is_jumping: bool = false
 var is_fastfalling: bool = false
@@ -114,7 +113,7 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	frame_count_grace += 1
-	if not FREECAM and not state_machine.state.name == "AirDash": # UGLY AS FUCK, refactor with a player.affected_by_gravity boolean swapped by states
+	if AFFECTED_BY_GRAVITY:
 		velocity.y += GRAVITY
 	velocity.y = clampf(velocity.y, FULLHOP_IMPULSE, MAX_FASTFALL_SPEED if is_fastfalling else MAX_FALL_SPEED)
 	#print(velocity.y)
