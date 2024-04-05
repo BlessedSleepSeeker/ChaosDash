@@ -10,7 +10,6 @@ extends CharacterBody2D
 
 @export var PLAYER_NBR: int = 1 ## Variable to handle control and color.
 
-#movement physics
 @export_group("Physics Variables")
 @export var GRAVITY: int = 20
 @export var AFFECTED_BY_GRAVITY: bool = true
@@ -102,8 +101,57 @@ func _ready():
 func getPlayerColor():
 	return playersColor[PLAYER_NBR - 1] if PLAYER_NBR - 1 < playersColor.size() else Color.SIENNA
 
-func _unhandled_input(_event):
-	pass
+#region Buffering Implementation
+
+# @export_group("Input Buffering")
+# @export_range(0, 100, 1) var BUFFER_SIZE: int = 0 # Physics Frames of input buffering.
+# var INPUT_BUFFER: Array[String]
+# var INPUT_TIMMING: Array[int]
+
+# func _unhandled_input(_event: InputEvent):
+# 	if Input.is_action_pressed(act_left):
+# 		add_to_buffer(act_left)
+# 	if Input.is_action_pressed(act_right):
+# 		add_to_buffer(act_right)
+# 	if Input.is_action_pressed(act_up):
+# 		add_to_buffer(act_up)
+# 	if Input.is_action_pressed(act_down):
+# 		add_to_buffer(act_down)
+# 	if Input.is_action_pressed(act_attack):
+# 		add_to_buffer(act_attack)
+# 	print_buffer()
+# 	send_buffered_input()
+# 	process_buffer()
+
+# func add_to_buffer(action: String) -> void:
+# 	INPUT_BUFFER.append(action)
+# 	INPUT_TIMMING.append(BUFFER_SIZE)
+
+# ## Press the action and call the state machine input handling.
+# func send_buffered_input() -> void:
+# 	if INPUT_BUFFER.size() > 0:
+# 		Input.action_press(INPUT_BUFFER.front())
+# 		state_machine._unhandled_input(null)
+
+# ## Called by states when they consume an input.
+# func consume_input() -> void:
+# 	INPUT_BUFFER.pop_front()
+# 	INPUT_TIMMING.pop_front()
+
+# ## Remove and Age buffered actions.
+# func process_buffer():
+# 	if INPUT_BUFFER.size() > 0:
+# 		if INPUT_TIMMING[0] == 0:
+# 			consume_input()
+# 			process_buffer()
+# 		if INPUT_TIMMING[0] > 0:
+# 			INPUT_TIMMING[0] -= 1		
+
+# func print_buffer():
+# 	for i in range(INPUT_BUFFER.size()):
+# 		print("%s : %d" % [INPUT_BUFFER[i], INPUT_TIMMING[i]])
+
+#endregion
 
 func _process(_delta):
 	if v_direction < 0:
@@ -117,6 +165,8 @@ func _physics_process(_delta):
 		velocity.y += GRAVITY
 	velocity.y = clampf(velocity.y, FULLHOP_IMPULSE, MAX_FASTFALL_SPEED if is_fastfalling else MAX_FALL_SPEED)
 	#print(velocity.y)
+
+#region Chaos Handling
 
 func chaosGravity(newGrav: int):
 	GRAVITY -= newGrav
@@ -134,6 +184,8 @@ func chaosWind(wind: int):
 
 func chaosGroundSpeed(new: int):
 	MAX_GROUND_SPEED += new
+
+#endregion
 
 signal got_hit(remainingLife: int)
 

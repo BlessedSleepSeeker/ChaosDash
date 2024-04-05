@@ -9,10 +9,21 @@ func handle_input(_event: InputEvent) -> void:
 	player.v_direction = Input.get_axis(player.act_left, player.act_right)
 	if player.v_direction == 0:
 		state_machine.transition_to("Idle")
+	else:
+		player.consume_input()
 	if Input.is_action_just_pressed(player.act_up):
 		state_machine.transition_to("JumpSquat")
 	if Input.is_action_just_pressed(player.act_attack):
 		state_machine.transition_to("Attack")
+
+#func get_left_right() -> float:
+#	var left: float = Input.get_action_strength(player.act_left)
+#	var right: float = Input.get_action_strength(player.act_right)
+#	if left > 0:
+#		player.consume_input()
+#	if right > 0:
+#		player.consume_input()
+#	return right - left
 
 func update(_delta: float) -> void:
 	pass

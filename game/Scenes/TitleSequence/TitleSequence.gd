@@ -12,6 +12,5 @@ func _ready():
 	transition.emit(main_menu, "")
 
 func _input(event):
-	print(event)
 	if event is InputEventKey or event is InputEventMouseButton or event is InputEventJoypadButton:
 		transition.emit(main_menu, "")

@@ -21,7 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://cvfcny1p2dpb2" path="res://sounds/soundeffects/shortboop5.mp3" id="13_w4gpw"]
 [ext_resource type="Script" path="res://scenes/Character/States/AirDashState.gd" id="20_5n8gw"]
 [ext_resource type="AudioStream" uid="uid://d0mywwc16twp2" path="res://sounds/soundeffects/doubleboop.mp3" id="21_wqww5"]
-[ext_resource type="SpriteFrames" uid="uid://dg4nf3npbcksm" path="res://scenes/Character/SpriteVariants/1.tres" id="22_reygy"]
+[ext_resource type="SpriteFrames" uid="uid://b1tkh568acu73" path="res://scenes/Character/SpriteVariants/2.tres" id="22_hjme8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoryc"]
 size = Vector2(10, 19)
@@ -105,6 +105,6 @@ position = Vector2(10, 1)
 position = Vector2(-10, 1)
 
 [node name="AnimSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("22_reygy")
+sprite_frames = ExtResource("22_hjme8")
 animation = &"attack"
 offset = Vector2(0, -3)
